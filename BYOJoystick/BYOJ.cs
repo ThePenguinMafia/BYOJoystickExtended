@@ -69,6 +69,8 @@ namespace BYOJoystick
             AddManager(new T55RearManager());
             AddManager(new EF24GFrontManager());
             AddManager(new EF24GRearManager());
+            AddManager(new SU47MManager());
+            AddManager(new F5EManager());
 
             ConfigManager.Initialise(Managers);
             BYOJUI.Initialise();
@@ -287,7 +289,9 @@ namespace BYOJoystick
                 "EF-24G"  => isSeatA ? "EF24GFront" : "EF24GRear",
                 "A-10D"   => "A10D",
                 "AH-6 Little Bird" => "AH6",
-                 _         => throw new InvalidOperationException($"Vehicle {vehicleName} not supported")
+                "SU-47M" => "SU47M",
+                "F-5E Tiger" => "F5E",
+                _         => throw new InvalidOperationException($"Vehicle {vehicleName} not supported")
             };
         }
 

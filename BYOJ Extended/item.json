@@ -1,0 +1,12 @@
+﻿{
+  "Title": "BYOJoystick Extended",
+  "Description": "Updated HOTAS support for VTOL VR. Adds full joystick bindings for the F-5E Tiger III, SU-47M Berkut, and F-16C Viper, plus all aircraft from the original BYOJ mod.\n\nFork of BYOJoystick by nebriv and BYOJoystickUpdated by majordillow1.",
+  "PreviewImageUrl": "",
+  "MetaData": {
+    "DllName": "BYOJoystick.dll",
+    "AllowLoadOnStart": true,
+    "ShowOnMainList": true,
+    "DllHash": ""
+  },
+  "DependenciesIds": []
+}
