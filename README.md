@@ -26,7 +26,7 @@ It features a user friendly interface for binding controls on a per-aircraft bas
 ## Download
 
 Visit the Steam Workshop page to subscribe:
-[https://steamcommunity.com/sharedfiles/filedetails/?id=YOURWORKSHOPIDHERE](https://steamcommunity.com/sharedfiles/filedetails/?id=YOURWORKSHOPIDHERE)
+[https://steamcommunity.com/sharedfiles/filedetails/?id=3732201271](https://steamcommunity.com/sharedfiles/filedetails/?id=3732201271)
 
 ## Installation
 
