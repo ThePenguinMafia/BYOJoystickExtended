@@ -11,100 +11,70 @@ namespace BYOJoystick.Managers
         public override string ShortName => "SU47M";
         public override bool IsMulticrew => false;
 
-        private static string SideJoystick => "Local/SideStickObjects";
-        private static string CenterJoystick => "Local/CenterStickObjects";
-
-        private CJoystick Joysticks(string name, string root, bool nullable, bool checkName, int idx)
-        {
-            return GetJoysticksByPaths(name, SideJoystick, CenterJoystick);
-        }
-
         protected override void PreMapping() { }
-
 
         protected override void CreateFlightControls()
         {
-            FlightAxisC("Joystick Pitch", "Joystick", Joysticks, CJoystick.SetPitch);
-            FlightAxisC("Joystick Yaw", "Joystick", Joysticks, CJoystick.SetYaw);
-            FlightAxisC("Joystick Roll", "Joystick", Joysticks, CJoystick.SetRoll);
-
             FlightAxis("Throttle", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Set);
             FlightButton("Throttle Increase", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Increase);
             FlightButton("Throttle Decrease", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Decrease);
-
             FlightAxis("Brakes Axis", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
             FlightButton("Brakes", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
 
-            // Exact log name: "Landing Gear"
             FlightButton("Landing Gear Toggle", "Landing Gear", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             FlightButton("Landing Gear Up", "Landing Gear", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             FlightButton("Landing Gear Down", "Landing Gear", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Exact log name: "Brake Locks"
             FlightButton("Parking Brake Toggle", "Brake Locks", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             FlightButton("Parking Brake On", "Brake Locks", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             FlightButton("Parking Brake Off", "Brake Locks", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // NEW — Flaps confirmed in log
             FlightButton("Flaps Cycle", "Flaps", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             FlightButton("Flaps Up", "Flaps", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
             FlightButton("Flaps Down", "Flaps", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
 
-            // NEW — Wing Fold confirmed in log (unique to SU-47!)
             FlightButton("Wing Fold Toggle", "Wing Fold", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             FlightButton("Wing Fold Open", "Wing Fold", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             FlightButton("Wing Fold Close", "Wing Fold", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // NEW — Canopy is a VRLever (exact name: "Canopy")
             FlightButton("Canopy Toggle", "Canopy", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             FlightButton("Canopy Open", "Canopy", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             FlightButton("Canopy Close", "Canopy", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            FlightButton("Fire Weapon", "Joystick", Joysticks, CJoystick.Trigger);
-            FlightButton("Cycle Weapons", "Joystick", Joysticks, CJoystick.MenuButton);
+            FlightButton("Fire Weapon", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
+            FlightButton("Cycle Weapons", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.MenuButton);
             FlightButton("Eject", "Eject", ByType<EjectHandle, CEject>, CEject.Pull, s: -1, n: true);
 
-            AddPostUpdateControl("Joystick");
             AddPostUpdateControl("Throttle");
         }
 
         protected override void CreateAssistControls()
         {
-            // Log name: "Toggle Flight Assist" (FLCS master)
             AssistButton("Flight Assist Toggle", "Toggle Flight Assist", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             AssistButton("Flight Assist On", "Toggle Flight Assist", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             AssistButton("Flight Assist Off", "Toggle Flight Assist", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Log names: "Toggle Pitch Assist", "Toggle Yaw Assist", "Toggle Roll Assist"
             AssistButton("Pitch SAS Toggle", "Toggle Pitch Assist", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             AssistButton("Yaw SAS Toggle", "Toggle Yaw Assist", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             AssistButton("Roll SAS Toggle", "Toggle Roll Assist", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
 
-            // Log name: "Toggle G-Limiter"
             AssistButton("G-Limiter Toggle", "Toggle G-Limiter", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             AssistButton("G-Limiter On", "Toggle G-Limiter", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             AssistButton("G-Limiter Off", "Toggle G-Limiter", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Log name: "Toggle Pitch Trim"
             AssistButton("Pitch Trim Toggle", "Toggle Pitch Trim", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
         }
 
         protected override void CreateNavigationControls()
         {
-            // Exact log names
-            // Fixed — explicit generic type
             NavButton("A/P Nav Mode", "Navigation Mode", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("A/P Spd Hold", "Airspeed Hold", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("A/P Hdg Hold", "Heading Hold", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("A/P Alt Hold", "Altitude Hold", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("A/P Off", "All AP Off", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
-            NavButton("Clear Waypoint", "Clear Waypoint", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("Toggle Altitude Mode", "Toggle Altitude Mode", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
-
             NavButton("Clear Waypoint", "Clear Waypoint", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
-            NavButton("Toggle Altitude Mode", "Toggle Altitude Mode", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            // AP knobs confirmed in log as VRTwistKnob
             NavAxisC("AP Heading Set", "AP Heading Set", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
             NavButton("AP Heading Up", "AP Heading Set", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
             NavButton("AP Heading Down", "AP Heading Set", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
@@ -124,23 +94,19 @@ namespace BYOJoystick.Managers
 
         protected override void CreateSystemsControls()
         {
-            // Exact log names confirmed
             SystemsButton("Clear Cautions", "Clear Cautions", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             SystemsButton("Master Arm Toggle", "Master Arm Switch", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Master Arm On", "Master Arm Switch", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             SystemsButton("Master Arm Off", "Master Arm Switch", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Exact log name: "Main Battery"
             SystemsButton("Battery Toggle", "Main Battery", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Battery On", "Main Battery", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             SystemsButton("Battery Off", "Main Battery", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Exact log name: "Auxilliary Power" (note the typo - it's spelled wrong IN the mod)
             SystemsButton("APU Toggle", "Auxilliary Power", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("APU On", "Auxilliary Power", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             SystemsButton("APU Off", "Auxilliary Power", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // TWO separate engines confirmed! "Left Engine" and "Right Engine"
             SystemsButton("Left Engine Toggle", "Left Engine", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Left Engine On", "Left Engine", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             SystemsButton("Left Engine Off", "Left Engine", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
@@ -148,31 +114,24 @@ namespace BYOJoystick.Managers
             SystemsButton("Right Engine On", "Right Engine", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             SystemsButton("Right Engine Off", "Right Engine", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Exact log name: "Radar Power"
             SystemsButton("Radar Power Toggle", "Radar Power", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Radar Power On", "Radar Power", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             SystemsButton("Radar Power Off", "Radar Power", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Exact log name: "RWR Toggle"
             SystemsButton("RWR Toggle", "RWR Toggle", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
 
-            // Exact log names: "Toggle Flares", "Toggle Chaff"
             SystemsButton("Toggle Chaff", "Toggle Chaff", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Toggle Flares", "Toggle Flares", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Fire Countermeasures", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.MenuButton);
 
-            // Exact log names confirmed for jettison buttons
             SystemsButton("Jettison Execute", "Jettison", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             SystemsButton("Jettison All", "Jettison All", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             SystemsButton("Jettison Empty", "Jettison Empty", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             SystemsButton("Jettison Ext Hardpoints", "Jettison Ext Hardpoints", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             SystemsButton("Clear Jettison Marks", "Clear Jettison Marks", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            // NEW — "Arrestor Hook" and "Launch Bar" confirmed in log
             SystemsButton("Arrestor Hook Toggle", "Arrestor Hook", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Launch Bar Toggle", "Launch Bar", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
-
-            // NEW — Fuel Dump
             SystemsButton("Fuel Dump Toggle", "Fuel Dump Switch", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
         }
 
@@ -181,22 +140,18 @@ namespace BYOJoystick.Managers
             HUDButton("Helmet Visor Toggle", "Toggle Visor", HelmetController, CHelmet.ToggleVisor, s: -1, n: true);
             HUDButton("Helmet NV Toggle", "Toggle NVG", HelmetController, CHelmet.ToggleNightVision, s: -1, n: true);
 
-            // Exact log names confirmed
             HUDButton("HUD Power Toggle", "HUD Power", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             HUDButton("HMCS Power Toggle", "HMCS Power", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             HUDButton("Night HUD Toggle", "Night HUD", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
 
-            // HUD Tint is a VRTwistKnob (confirmed)
             HUDAxisC("HUD Tint", "HUD Tint", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
             HUDButton("HUD Tint Up", "HUD Tint", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
             HUDButton("HUD Tint Down", "HUD Tint", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
-            // MFD Brightness confirmed as VRTwistKnob
             HUDAxisC("MFD Brightness", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
             HUDButton("MFD Brightness Up", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
             HUDButton("MFD Brightness Down", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
-            // HUD Declutter is VRTwistKnobInt
             HUDButton("HUD Declutter Cycle", "HUD Declutter", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
         }
 
@@ -273,12 +228,10 @@ namespace BYOJoystick.Managers
 
         protected override void CreateMusicControls()
         {
-            // Exact log names: "PlayPause", "Prev Song", "Next Song"
             MusicButton("Music Play/Pause", "PlayPause", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             MusicButton("Music Next", "Next Song", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             MusicButton("Music Prev", "Prev Song", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            // Radio Volume is a VRTwistKnob
             MusicAxisC("Radio Volume", "Radio Volume", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
             MusicButton("Radio Volume Up", "Radio Volume", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
             MusicButton("Radio Volume Down", "Radio Volume", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
@@ -286,15 +239,9 @@ namespace BYOJoystick.Managers
 
         protected override void CreateLightsControls()
         {
-            // FIX: Nav Lights and Strobe Lights are VRTwistKnobInt, NOT VRLever
-            LightsButton("Nav Lights Toggle", "Nav Lights", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
-            LightsButton("Nav Lights On", "Nav Lights", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Set, s: 1, n: true);
-            LightsButton("Nav Lights Off", "Nav Lights", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Set, s: 0, n: true);
-            LightsButton("Strobe Lights Toggle", "Strobe Lights", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
-            LightsButton("Strobe Lights On", "Strobe Lights", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Set, s: 1, n: true);
-            LightsButton("Strobe Lights Off", "Strobe Lights", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Set, s: 0, n: true);
-
-            // These are confirmed VRLever in the log
+            // Log confirms Nav Lights and Strobe Lights are VRLever on SU-47M, NOT VRTwistKnobInt
+            LightsButton("Nav Lights Toggle", "Nav Lights", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
+            LightsButton("Strobe Lights Toggle", "Strobe Lights", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             LightsButton("Landing Lights Toggle", "Landing Lights", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             LightsButton("Formation Lights Toggle", "Formation Lights", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             LightsButton("Interior Lights Toggle", "Interior Lights", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
@@ -303,7 +250,6 @@ namespace BYOJoystick.Managers
 
         protected override void CreateMiscControls()
         {
-            // Confirmed in log — Fuel Port is a VRLever
             MiscButton("Fuel Port Toggle", "Fuel Port", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             MiscButton("Fuel Port Open", "Fuel Port", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             MiscButton("Fuel Port Close", "Fuel Port", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);

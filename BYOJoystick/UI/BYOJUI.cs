@@ -242,18 +242,16 @@ namespace BYOJoystick.UI
 
         private void PopulateDeviceHeaders()
         {
-            var devices = BYOJ.GetAllJoysticks();
-
             foreach (Transform child in Devices.transform)
-            {
                 Destroy(child.gameObject);
-            }
 
-            Instantiate(DeviceHeaderPrefab, Devices.transform).GetComponentInChildren<TextMeshProUGUI>().text = "Keyboard";
+            var keyboardHeader = Instantiate(DeviceHeaderPrefab, Devices.transform);
+            keyboardHeader.GetComponentInChildren<TextMeshProUGUI>().text = "Keyboard";
 
-            foreach (var device in devices)
+            foreach (var device in BYOJ.GetAllJoysticks())
             {
-                Instantiate(DeviceHeaderPrefab, Devices.transform).GetComponentInChildren<TextMeshProUGUI>().text = device.Information.InstanceName;
+                var header = Instantiate(DeviceHeaderPrefab, Devices.transform);
+                header.GetComponentInChildren<TextMeshProUGUI>().text = device.Information.InstanceName;
             }
         }
 

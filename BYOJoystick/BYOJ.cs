@@ -258,6 +258,8 @@ namespace BYOJoystick
             if (vehicle == null)
                 return;
 
+            Plugin.Log($"[BYOJE DEBUG] Raw vehicleName = '{playerVehicle.vehicleName}'");
+
             var pilotSwitcher = FindObjectOfType<AH94PilotSwitcher>();
             if (pilotSwitcher == null)
             {

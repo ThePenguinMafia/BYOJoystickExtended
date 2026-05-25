@@ -17,36 +17,20 @@ namespace BYOJoystick.UI.Scripts
         public GameObject      CopyFromPanel;
         public Button          CopyFromButton;
 
-        public void Initialise(string         gameName,
-                               string         shortName,
-                               Action<string> onSelect,
-                               Action<string> onSave,
-                               Action<string> onLoad,
-                               Action<string> onCopyFrom)
+        public void Initialise(string gameName, string shortName, Action<string> onSelect,
+    Action<string> onSave, Action<string> onLoad, Action<string> onCopyFrom)
         {
-            GameName        = gameName;
-            ShortName       = shortName;
+            GameName = gameName;
+            ShortName = shortName;
             SelectText.text = gameName;
 
-            SelectButton.onClick.AddListener(() =>
-            {
-                onSelect(ShortName);
-            });
+            // Capture local copies to avoid closure issues
+            string capturedShortName = shortName;
 
-            SaveButton.onClick.AddListener(() =>
-            {
-                onSave(ShortName);
-            });
-
-            LoadButton.onClick.AddListener(() =>
-            {
-                onLoad(ShortName);
-            });
-
-            CopyFromButton.onClick.AddListener(() =>
-            {
-                onCopyFrom(ShortName);
-            });
+            SelectButton.onClick.AddListener(() => onSelect(capturedShortName));
+            SaveButton.onClick.AddListener(() => onSave(capturedShortName));
+            LoadButton.onClick.AddListener(() => onLoad(capturedShortName));
+            CopyFromButton.onClick.AddListener(() => onCopyFrom(capturedShortName));
         }
 
         public void SetSelected(bool selected)
