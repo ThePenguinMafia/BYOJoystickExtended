@@ -71,6 +71,7 @@ namespace BYOJoystick
             AddManager(new EF24GRearManager());
             AddManager(new SU47MManager());
             AddManager(new F5EManager());
+            AddManager(new AQ39Manager());
 
             ConfigManager.Initialise(Managers);
             BYOJUI.Initialise();
@@ -293,6 +294,8 @@ namespace BYOJoystick
                 "AH-6 Little Bird" => "AH6",
                 "SU-47M" => "SU47M",
                 "F-5E Tiger" => "F5E",
+                "AQ-39" => "AQ39",
+                "AQ-39 Attack Drone" => "AQ39",
                 _         => throw new InvalidOperationException($"Vehicle {vehicleName} not supported")
             };
         }

@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.3 — AQ-39 Attack Drone support & config UI fix
+
+Adds full BYOJ support for the [AQ-39 Attack Drone](https://steamcommunity.com/sharedfiles/filedetails/?id=3572803786) mod aircraft, mapped from in-game manifest/interactable dumps. Fixes the config menu breaking when duplicate action names were registered during manager init.
+
+### AQ-39 Attack Drone (new)
+- **New manager:** flight (side + center stick, throttle, brakes axis, carrier controls), systems (master arm, engine/APU/battery, CMS chaff/flares, radar, jettison), navigation (MFD autopilot buttons, clear waypoint), displays (SOI, MFD power/brightness, full MFD edge keys), numpad, radio, lights, helmet visor/NVG
+- **Vehicle names:** recognises both `AQ-39` and `AQ-39 Attack Drone`
+- **Fire Countermeasures:** throttle menu button (Flight category)
+
+### Fixes
+- **Config UI crash:** duplicate `Fire Weapon` action key during `AQ39Manager` init aborted manager setup and left the binding screen showing only partial Flight rows — resolved by keeping weapon bindings in Flight only
+- **Config UI layout:** BYOJ prefab canvas scale/anchors restored so the configuration screen fills the display correctly
+
+### Dev
+- Per-aircraft verbose logging unchanged — set `Plugin.VerboseInteractableDiscoveryForShortName` to `"AQ39"` (or `"ALL"`) in source before building to dump interactables
+
+---
+
 ## v1.2 — HOTAS brake axis, F-22 / SU-47M / F-45 fixes & mapping tools
 
 Fixed brake/airbrake axis bindings across all supported jets (axis inputs were ignored because *GetAsBool()* never fires on joystick axes). Major mapping fixes for F-22, SU-47M, F-45A throttle tilt, AH-6 & EF-24G SOI, plus per-aircraft debug logging for modders.

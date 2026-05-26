@@ -13,13 +13,11 @@ namespace BYOJoystick
     {
         public BYOJ BYOJ;
 
-        /// <summary>
-        /// Set this to the manager <c>ShortName</c> you want to log (e.g. <c>"F22"</c>, <c>"SU47M"</c>).
+        /// Set this to the manager ShortName you want to log (e.g. "F22", "SU47M").
         /// When empty, interactable/manifest discovery dumps are disabled.
         ///
-        /// Use <c>"ALL"</c> (or <c>"*"</c>) to enable for all aircraft.
-        /// You can also use comma/semicolon separated values (e.g. <c>"F22;SU47M"</c>).
-        /// </summary>
+        /// Use "ALL" (or "*") to enable for all aircraft.
+        /// You can also use comma/semicolon separated values (e.g. "F22;SU47M").
         public static string VerboseInteractableDiscoveryForShortName = "";
 
         public static bool IsVerboseInteractableDiscoveryEnabledFor(string shortName)
