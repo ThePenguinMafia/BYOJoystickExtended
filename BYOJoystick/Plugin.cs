@@ -12,6 +12,38 @@ namespace BYOJoystick
     public class Plugin : VtolMod
     {
         public BYOJ BYOJ;
+
+        /// <summary>
+        /// Set this to the manager <c>ShortName</c> you want to log (e.g. <c>"F22"</c>, <c>"SU47M"</c>).
+        /// When empty, interactable/manifest discovery dumps are disabled.
+        ///
+        /// Use <c>"ALL"</c> (or <c>"*"</c>) to enable for all aircraft.
+        /// You can also use comma/semicolon separated values (e.g. <c>"F22;SU47M"</c>).
+        /// </summary>
+        public static string VerboseInteractableDiscoveryForShortName = "";
+
+        public static bool IsVerboseInteractableDiscoveryEnabledFor(string shortName)
+        {
+            if (string.IsNullOrWhiteSpace(shortName))
+                return false;
+
+            var spec = VerboseInteractableDiscoveryForShortName;
+            if (string.IsNullOrWhiteSpace(spec))
+                return false;
+
+            spec = spec.Trim();
+            if (spec.Equals("ALL", StringComparison.OrdinalIgnoreCase) || spec.Equals("*"))
+                return true;
+
+            var parts = spec.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var part in parts)
+            {
+                if (part.Trim().Equals(shortName, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+
+            return false;
+        }
         
         public static void Log(object msg)
         {

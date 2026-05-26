@@ -6,6 +6,30 @@ namespace BYOJoystick
 {
     public static class CompiledExpressions
     {
+        public static Func<TClass, TField> TryCreateFieldGetter<TClass, TField>(string fieldName)
+        {
+            var fieldInfo = typeof(TClass).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance);
+            if (fieldInfo == null)
+                return null;
+            var instance = Expression.Parameter(typeof(TClass), "instance");
+            var field    = Expression.Field(instance, fieldInfo);
+            var lambda   = Expression.Lambda<Func<TClass, TField>>(field, instance);
+            return lambda.Compile();
+        }
+
+        public static Action<TClass, TField> TryCreateFieldSetter<TClass, TField>(string fieldName)
+        {
+            var fieldInfo = typeof(TClass).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance);
+            if (fieldInfo == null)
+                return null;
+            var instance = Expression.Parameter(typeof(TClass), "instance");
+            var value    = Expression.Parameter(typeof(TField), "value");
+            var field    = Expression.Field(instance, fieldInfo);
+            var assign   = Expression.Assign(field, value);
+            var lambda   = Expression.Lambda<Action<TClass, TField>>(assign, instance, value);
+            return lambda.Compile();
+        }
+
         public static Func<TClass, TField> CreateFieldGetter<TClass, TField>(string fieldName)
         {
             var fieldInfo = typeof(TClass).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance);

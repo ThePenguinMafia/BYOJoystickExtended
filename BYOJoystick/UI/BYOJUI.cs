@@ -31,9 +31,9 @@ namespace BYOJoystick.UI
         private          int                   _currentPage;
         private          int                   _itemsPerPage = 0;
         private          Button                _prevPageButton;
-        private          Button                _nextPageButton;
-        private          TextMeshProUGUI       _pageIndicator;
-        public           bool                  IsBinding => BYOJBindingModal.IsBinding;
+        private          Button          _nextPageButton;
+        private          TextMeshProUGUI _pageIndicator;
+        public           bool            IsBinding => BYOJBindingModal.IsBinding;
 
         public void Initialise()
         {
@@ -468,5 +468,8 @@ namespace BYOJoystick.UI
             PopulateDeviceHeaders();
             PopulateBindings();
         }
+
+        // Reserved for future per-resolution UI tweaks. Currently a no-op to avoid impacting other mods.
+        private void ApplyScreenFitLayout() { }
     }
 }

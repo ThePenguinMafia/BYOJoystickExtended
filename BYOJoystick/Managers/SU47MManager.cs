@@ -11,14 +11,66 @@ namespace BYOJoystick.Managers
         public override string ShortName => "SU47M";
         public override bool IsMulticrew => false;
 
-        protected override void PreMapping() { }
+        private CJoystick CockpitJoystick(string name, string root, bool nullable, bool checkName, int idx)
+        {
+            if (TryGetExistingControl<CJoystick>(name, out var existingControl))
+                return existingControl;
+
+            var sticks = VehicleControlManifest.joysticks;
+            VRJoystick side = sticks != null && sticks.Length > 0 ? sticks[0] : null;
+            VRJoystick center = sticks != null && sticks.Length > 1 ? sticks[1] : null;
+            if (side == null && center == null)
+            {
+                if (nullable)
+                    return null;
+                throw new System.InvalidOperationException("No joysticks found in VehicleControlManifest.");
+            }
+
+            var control = new CJoystick(Vehicle, side ?? center, side != null ? center : null, IsMulticrew, true);
+            Controls.Add(name, control);
+            return control;
+        }
+
+        // Altitude AP button mislabeled "Heading Hold" in game (log: AltitudeAPButton)
+        private CButton ApAltitudeHoldButton(string name, string root, bool nullable, bool checkName, int idx)
+        {
+            if (TryGetExistingControl<CButton>(name, out var existingControl))
+                return existingControl;
+
+            foreach (var interactable in Interactables)
+            {
+                if (interactable.gameObject.name != "AltitudeAPButton")
+                    continue;
+                var button = interactable.GetComponent<VRButton>();
+                if (button == null)
+                {
+                    if (nullable)
+                        return null;
+                    throw new System.InvalidOperationException("AltitudeAPButton requires VRButton.");
+                }
+                return ToControl<VRButton, CButton>(name, interactable, button);
+            }
+
+            if (nullable)
+                return null;
+            throw new System.InvalidOperationException("AltitudeAPButton not found.");
+        }
+
+        protected override void PreMapping()
+        {
+            LogInteractablesIfEnabled("SU47M");
+        }
 
         protected override void CreateFlightControls()
         {
+            FlightAxisC("Joystick Pitch", "Joystick", CockpitJoystick, CJoystick.SetPitch);
+            FlightAxisC("Joystick Yaw", "Joystick", CockpitJoystick, CJoystick.SetYaw);
+            FlightAxisC("Joystick Roll", "Joystick", CockpitJoystick, CJoystick.SetRoll);
+
             FlightAxis("Throttle", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Set);
             FlightButton("Throttle Increase", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Increase);
             FlightButton("Throttle Decrease", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Decrease);
-            FlightAxis("Brakes Axis", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
+            FlightAxis("Brakes Axis", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.TriggerAxis);
             FlightButton("Brakes", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
 
             FlightButton("Landing Gear Toggle", "Landing Gear", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
@@ -41,10 +93,12 @@ namespace BYOJoystick.Managers
             FlightButton("Canopy Open", "Canopy", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             FlightButton("Canopy Close", "Canopy", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            FlightButton("Fire Weapon", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
-            FlightButton("Cycle Weapons", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.MenuButton);
+            FlightButton("Fire Weapon", "Joystick", CockpitJoystick, CJoystick.Trigger);
+            FlightButton("Cycle Weapons", "Joystick", CockpitJoystick, CJoystick.MenuButton);
+            FlightButton("Fire Countermeasures", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.MenuButton);
             FlightButton("Eject", "Eject", ByType<EjectHandle, CEject>, CEject.Pull, s: -1, n: true);
 
+            AddPostUpdateControl("Joystick");
             AddPostUpdateControl("Throttle");
         }
 
@@ -70,7 +124,7 @@ namespace BYOJoystick.Managers
             NavButton("A/P Nav Mode", "Navigation Mode", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("A/P Spd Hold", "Airspeed Hold", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("A/P Hdg Hold", "Heading Hold", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
-            NavButton("A/P Alt Hold", "Altitude Hold", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
+            NavButton("A/P Alt Hold", "A/P Alt Hold", ApAltitudeHoldButton, CButton.Use, s: -1, n: true);
             NavButton("A/P Off", "All AP Off", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("Toggle Altitude Mode", "Toggle Altitude Mode", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("Clear Waypoint", "Clear Waypoint", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
@@ -122,7 +176,6 @@ namespace BYOJoystick.Managers
 
             SystemsButton("Toggle Chaff", "Toggle Chaff", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Toggle Flares", "Toggle Flares", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
-            SystemsButton("Fire Countermeasures", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.MenuButton);
 
             SystemsButton("Jettison Execute", "Jettison", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             SystemsButton("Jettison All", "Jettison All", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
@@ -153,6 +206,23 @@ namespace BYOJoystick.Managers
             HUDButton("MFD Brightness Down", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
             HUDButton("HUD Declutter Cycle", "HUD Declutter", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
+
+            // SOI Slew
+            HUDButton("SOI Slew Button", "SOI", SOI, CSOI.SlewButton);
+            HUDAxisC("SOI Slew X", "SOI", SOI, CSOI.SlewX);
+            HUDAxisC("SOI Slew Y", "SOI", SOI, CSOI.SlewY);
+            HUDButton("SOI Slew Up", "SOI", SOI, CSOI.SlewUp);
+            HUDButton("SOI Slew Right", "SOI", SOI, CSOI.SlewRight);
+            HUDButton("SOI Slew Down", "SOI", SOI, CSOI.SlewDown);
+            HUDButton("SOI Slew Left", "SOI", SOI, CSOI.SlewLeft);
+            HUDButton("SOI Next", "SOI", SOI, CSOI.Next);
+            HUDButton("SOI Prev", "SOI", SOI, CSOI.Prev);
+            HUDButton("SOI Zoom In", "SOI", SOI, CSOI.ZoomIn);
+            HUDButton("SOI Zoom Out", "SOI", SOI, CSOI.ZoomOut);
+
+            AddPostUpdateControl("HUD Tint");
+            AddPostUpdateControl("MFD Brightness");
+            AddPostUpdateControl("SOI");
         }
 
         protected override void CreateNumPadControls()

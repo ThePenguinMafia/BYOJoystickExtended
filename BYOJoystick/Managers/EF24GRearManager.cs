@@ -149,6 +149,9 @@ namespace BYOJoystick.Managers
             DisplayButton("SOI Zoom In", "SOI", SOI, CSOI.ZoomIn);
             DisplayButton("SOI Zoom Out", "SOI", SOI, CSOI.ZoomOut);
 
+            DisplayButton("SOI Radar Elev Up", "SOI", SOI, CSOI.RadarElevUp);
+            DisplayButton("SOI Radar Elev Down", "SOI", SOI, CSOI.RadarElevDown);
+
             DisplayButton("TSD Slew TGP/EOTS", "Slew TGP", TSDInteractable, CInteractable.Use);
             DisplayButton("TSD GPS-S", "GPS Send", TSDInteractable, CInteractable.Use);
 

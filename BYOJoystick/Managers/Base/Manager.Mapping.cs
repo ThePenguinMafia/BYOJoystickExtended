@@ -21,8 +21,7 @@ namespace BYOJoystick.Managers.Base
             if (VehicleControlManifest == null)
                 throw new InvalidOperationException("VehicleControlManifest not found.");
 
-            // If this is the A-10D, F-16, F-22, AH-6, SU-47M, or F-5E print a full control manifest debug dump to help map controls
-            if (GameName == "A-10D" || GameName == "F-16" || GameName == "F-22" || GameName == "AH-6 Little Bird" || GameName == "SU-47M" || GameName == "F-5E")
+            if (Plugin.IsVerboseInteractableDiscoveryEnabledFor(ShortName))
             {
                 try
                 {
@@ -34,10 +33,9 @@ namespace BYOJoystick.Managers.Base
                 }
             }
 
-            // Diagnostic: if mapping F-16, F-22, A-10D, AH-6, or SU-47M, or F-5E dump manifest and interactables for troubleshooting
             try
             {
-                if (GameName == "A-10D" || GameName == "F-16" || GameName == "F-22" || GameName == "AH-6 Little Bird" || GameName == "SU-47M" || GameName == "F-5E")
+                if (Plugin.IsVerboseInteractableDiscoveryEnabledFor(ShortName))
                 {
                     Plugin.Log($"--- {GameName} DIAGNOSTIC DUMP START ---");
                     var vcm = VehicleControlManifest;

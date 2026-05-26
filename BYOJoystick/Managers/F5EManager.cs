@@ -20,9 +20,7 @@ namespace BYOJoystick.Managers
 
         protected override void PreMapping()
         {
-            var interactables = Vehicle.GetComponentsInChildren<VRInteractable>(true);
-            foreach (var i in interactables)
-                Plugin.Log($"[F5E] {i.GetType().Name} : \"{i.name}\"");
+            LogInteractablesIfEnabled("F5E");
         }
 
         protected override void CreateFlightControls()
@@ -34,7 +32,7 @@ namespace BYOJoystick.Managers
             FlightAxis("Throttle", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Set);
             FlightButton("Throttle Increase", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Increase);
             FlightButton("Throttle Decrease", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Decrease);
-            FlightAxis("Brakes Axis", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
+            FlightAxis("Brakes Axis", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.TriggerAxis);
             FlightButton("Brakes", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
 
             FlightButton("Landing Gear Toggle", "GearInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);

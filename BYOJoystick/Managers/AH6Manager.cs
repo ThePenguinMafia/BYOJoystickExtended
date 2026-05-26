@@ -190,6 +190,19 @@ namespace BYOJoystick.Managers
 
         protected override void CreateDisplayControls()
         {
+            // SOI Slew
+            DisplayButton("SOI Slew Button", "SOI", SOI, CSOI.SlewButton);
+            DisplayAxisC("SOI Slew X", "SOI", SOI, CSOI.SlewX);
+            DisplayAxisC("SOI Slew Y", "SOI", SOI, CSOI.SlewY);
+            DisplayButton("SOI Slew Up", "SOI", SOI, CSOI.SlewUp);
+            DisplayButton("SOI Slew Right", "SOI", SOI, CSOI.SlewRight);
+            DisplayButton("SOI Slew Down", "SOI", SOI, CSOI.SlewDown);
+            DisplayButton("SOI Slew Left", "SOI", SOI, CSOI.SlewLeft);
+            DisplayButton("SOI Next", "SOI", SOI, CSOI.Next);
+            DisplayButton("SOI Prev", "SOI", SOI, CSOI.Prev);
+            DisplayButton("SOI Zoom In", "SOI", SOI, CSOI.ZoomIn);
+            DisplayButton("SOI Zoom Out", "SOI", SOI, CSOI.ZoomOut);
+
             // UFD (Upfront Display) buttons
             DisplayButton("UFD Fuel", "UFD Fuel (Rear)", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             DisplayButton("UFD Autopilot", "UFD Autopilot (Rear)", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
@@ -203,6 +216,9 @@ namespace BYOJoystick.Managers
             DisplayAxis("MFD Brightness", "MFD Brightness (Rear)", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
             DisplayButton("MFD Brightness +", "MFD Brightness (Rear)", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
             DisplayButton("MFD Brightness -", "MFD Brightness (Rear)", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
+
+            AddPostUpdateControl("MFD Brightness (Rear)");
+            AddPostUpdateControl("SOI");
         }
 
         protected override void CreateRadioControls()

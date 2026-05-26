@@ -276,6 +276,45 @@ namespace BYOJoystick.Controls
             c.Throttle.OnTriggerAxis?.Invoke(binding.GetAsBool() ? 1f : 0f);
         }
 
+        // Axis version of Trigger.
+        // JoystickBinding.GetAsBool() is false for axis bindings; use the axis float instead.
+        public static void TriggerAxis(CThrottle c, Binding binding, int state)
+        {
+            if (c == null || binding == null)
+                return;
+
+            float axisValue = 0f;
+            float deadzone  = 0f;
+            bool  pressed;
+
+            if (binding is JoystickBinding jb)
+            {
+                axisValue = jb.GetAsFloat(); // 0..1 (after optional invert)
+                deadzone  = jb.Deadzone;
+                pressed   = axisValue > deadzone;
+            }
+            else
+            {
+                // Keyboard or other digital bindings.
+                pressed   = binding.GetAsBool();
+                axisValue = pressed ? 1f : 0f;
+            }
+
+            if (!c.TriggerPressed && pressed)
+            {
+                c.TriggerPressed = true;
+                c.Throttle.OnTriggerDown?.Invoke();
+            }
+
+            if (c.TriggerPressed && !pressed)
+            {
+                c.TriggerPressed = false;
+                c.Throttle.OnTriggerUp?.Invoke();
+            }
+
+            c.Throttle.OnTriggerAxis?.Invoke(pressed ? axisValue : 0f);
+        }
+
         public static void ThumbstickButton(CThrottle c, Binding binding, int state)
         {
             if (binding.GetAsBool())

@@ -10,25 +10,68 @@ namespace BYOJoystick.Managers
         public override string ShortName   => "F22";
         public override bool   IsMulticrew => false;
 
-        private static string Dash           => "Local/DashCanvas";
-        private static string SideJoystick   => "Local/FlightStickGroup";
-        private static string CenterJoystick => "Local/CenterStickObjects";
-
-        private CJoystick Joysticks(string name, string root, bool nullable, bool checkName, int idx)
+        private CJoystick CockpitJoystick(string name, string root, bool nullable, bool checkName, int idx)
         {
-            return GetJoysticksByPaths(name, SideJoystick, CenterJoystick);
+            if (TryGetExistingControl<CJoystick>(name, out var existingControl))
+                return existingControl;
+
+            var sticks = VehicleControlManifest.joysticks;
+            VRJoystick side = sticks != null && sticks.Length > 0 ? sticks[0] : null;
+            VRJoystick center = sticks != null && sticks.Length > 1 ? sticks[1] : null;
+            if (side == null && center == null)
+            {
+                if (nullable)
+                    return null;
+                throw new System.InvalidOperationException("No joysticks found in VehicleControlManifest.");
+            }
+
+            var control = new CJoystick(Vehicle, side ?? center, side != null ? center : null, IsMulticrew, true);
+            Controls.Add(name, control);
+            return control;
         }
+
+        private CKnobInt DashTwistKnobInt(string registryName, string interactableObjectName, string root, bool nullable, int idx)
+        {
+            if (TryGetExistingControl<CKnobInt>(registryName, out var existingControl))
+                return existingControl;
+
+            var rootObject = root == null ? Vehicle : GetGameObject(root, nullable);
+            if (rootObject == null)
+                return null;
+
+            var interactables = rootObject == Vehicle ? Interactables : rootObject.GetComponentsInChildren<VRInteractable>(true);
+            foreach (var interactable in interactables)
+            {
+                if (interactable.gameObject.name != interactableObjectName)
+                    continue;
+                var knob = interactable.GetComponent<VRTwistKnobInt>();
+                if (knob == null)
+                    continue;
+                return ToControl<VRTwistKnobInt, CKnobInt>(registryName, interactable, knob);
+            }
+
+            if (nullable)
+                return null;
+            throw new System.InvalidOperationException($"VRTwistKnobInt {interactableObjectName} not found.");
+        }
+
+        private CKnobInt RadarPowerKnob(string name, string root, bool nullable, bool checkName, int idx)
+            => DashTwistKnobInt("Radar Power", "RadarPowerInteractable", root, nullable, idx);
+
+        private CKnobInt RwrModeKnob(string name, string root, bool nullable, bool checkName, int idx)
+            => DashTwistKnobInt("RWR Mode", "RWRModeInteractable", root, nullable, idx);
 
         protected override void PreMapping()
         {
+            LogInteractablesIfEnabled("F22");
         }
 
         protected override void CreateFlightControls()
         {
             // Primary flight axes
-            FlightAxisC("Joystick Pitch", "Joystick", Joysticks, CJoystick.SetPitch);
-            FlightAxisC("Joystick Yaw", "Joystick", Joysticks, CJoystick.SetYaw);
-            FlightAxisC("Joystick Roll", "Joystick", Joysticks, CJoystick.SetRoll);
+            FlightAxisC("Joystick Pitch", "Joystick", CockpitJoystick, CJoystick.SetPitch);
+            FlightAxisC("Joystick Yaw", "Joystick", CockpitJoystick, CJoystick.SetYaw);
+            FlightAxisC("Joystick Roll", "Joystick", CockpitJoystick, CJoystick.SetRoll);
 
             // Throttle
             FlightAxis("Throttle", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Set);
@@ -36,7 +79,7 @@ namespace BYOJoystick.Managers
             FlightButton("Throttle Decrease", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Decrease);
 
             // Brakes/airbrakes
-            FlightAxis("Brakes/Airbrakes Axis", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
+            FlightAxis("Brakes/Airbrakes Axis", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.TriggerAxis);
             FlightButton("Brakes/Airbrakes", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
 
             // Landing Gear
@@ -55,8 +98,8 @@ namespace BYOJoystick.Managers
             FlightButton("Arrestor Hook Up", "Arrestor Hook", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
             // Weapons
-            FlightButton("Fire Weapon", "Joystick", Joysticks, CJoystick.Trigger);
-            FlightButton("Cycle Weapons", "Joystick", Joysticks, CJoystick.MenuButton);
+            FlightButton("Fire Weapon", "Joystick", CockpitJoystick, CJoystick.Trigger);
+            FlightButton("Cycle Weapons", "Joystick", CockpitJoystick, CJoystick.MenuButton);
 
             // Eject
             FlightButton("Eject", "Eject", ByType<EjectHandle, CEject>, CEject.Pull, s: -1, n: true);
@@ -127,15 +170,13 @@ namespace BYOJoystick.Managers
             SystemsButton("Engine Select Cycle", "Engine Select", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Motor Toggle", "Motor Toggle", ByManifest<VRButton, CButton>, CButton.Use, i: 29);
 
-            // Radar - Use manifest index to avoid name collision with TSD Radar Power button
-            SystemsButton("Radar Power Toggle", "Radar Power", ByManifest<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, i: 1);
-            SystemsButton("Radar Power On", "Radar Power", ByManifest<VRTwistKnobInt, CKnobInt>, CKnobInt.Set, s: 1, i: 1);
-            SystemsButton("Radar Power Off", "Radar Power", ByManifest<VRTwistKnobInt, CKnobInt>, CKnobInt.Set, s: 0, i: 1);
+            SystemsButton("Radar Power Toggle", "Radar Power", RadarPowerKnob, CKnobInt.Cycle, r: "Local/DashCanvas/Dash", s: -1, n: true);
+            SystemsButton("Radar Power On", "Radar Power", RadarPowerKnob, CKnobInt.Set, r: "Local/DashCanvas/Dash", s: 1, n: true);
+            SystemsButton("Radar Power Off", "Radar Power", RadarPowerKnob, CKnobInt.Set, r: "Local/DashCanvas/Dash", s: 0, n: true);
 
-            // RWR - Use manifest index to avoid name collision with MMFD RWR Mode button
-            SystemsButton("RWR Mode Cycle", "RWR Mode", ByManifest<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, i: 2);
-            SystemsButton("RWR Mode Next", "RWR Mode", ByManifest<VRTwistKnobInt, CKnobInt>, CKnobInt.Next, i: 2);
-            SystemsButton("RWR Mode Prev", "RWR Mode", ByManifest<VRTwistKnobInt, CKnobInt>, CKnobInt.Prev, i: 2);
+            SystemsButton("RWR Mode Cycle", "RWR Mode", RwrModeKnob, CKnobInt.Cycle, r: "Local/DashCanvas/Dash", s: -1, n: true);
+            SystemsButton("RWR Mode Next", "RWR Mode", RwrModeKnob, CKnobInt.Next, r: "Local/DashCanvas/Dash", s: -1, n: true);
+            SystemsButton("RWR Mode Prev", "RWR Mode", RwrModeKnob, CKnobInt.Prev, r: "Local/DashCanvas/Dash", s: -1, n: true);
 
             // Countermeasures
             SystemsButton("Toggle Chaff", "Toggle Chaff", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
@@ -168,12 +209,6 @@ namespace BYOJoystick.Managers
             // Helmet controls
             HUDButton("Helmet Visor Toggle", "Toggle Visor", HelmetController, CHelmet.ToggleVisor, s: -1, n: true);
             HUDButton("Helmet NV Toggle", "Toggle NVG", HelmetController, CHelmet.ToggleNightVision, s: -1, n: true);
-
-            // HMCS Power (roller control) - using VRInteractable with root path to find the specific roller
-            HUDButton("HMCS Power Toggle", "HMCS Power", ByName<VRInteractable, CInteractable>, CInteractable.Use, r: Dash, n: true);
-
-            // HUD Power (roller control) - using VRInteractable with root path to find the specific roller
-            HUDButton("HUD Power Toggle", "HUD Power", ByName<VRInteractable, CInteractable>, CInteractable.Use, r: Dash, n: true);
 
             // HUD Controls
             HUDAxis("HUD Brightness", "HUD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
@@ -214,9 +249,6 @@ namespace BYOJoystick.Managers
 
         protected override void CreateDisplayControls()
         {
-
-
-
             DisplayButton("SOI Slew Button", "SOI", SOI, CSOI.SlewButton);
             DisplayAxisC("SOI Slew X", "SOI", SOI, CSOI.SlewX);
             DisplayAxisC("SOI Slew Y", "SOI", SOI, CSOI.SlewY);
@@ -228,6 +260,7 @@ namespace BYOJoystick.Managers
             DisplayButton("SOI Prev", "SOI", SOI, CSOI.Prev);
             DisplayButton("SOI Zoom In", "SOI", SOI, CSOI.ZoomIn);
             DisplayButton("SOI Zoom Out", "SOI", SOI, CSOI.ZoomOut);
+
             // MFD Brightness (shared)
             DisplayAxis("MFD Brightness", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
             DisplayButton("MFD Brightness +", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
@@ -339,6 +372,7 @@ namespace BYOJoystick.Managers
             DisplayButton("MFD4 B5", "MFD Bottom", MFD, CMFD.Press, (int)MFDButtons.B5, i: 3);
 
             AddPostUpdateControl("MFD Brightness");
+            AddPostUpdateControl("SOI");
         }
 
         protected override void CreateRadioControls()
@@ -373,7 +407,7 @@ namespace BYOJoystick.Managers
 
         protected override void CreateLightsControls()
         {
-            // Formation Lights
+            // Game ref name typo: Formation LIghts (log)
             LightsButton("Formation Lights Cycle", "Formation LIghts", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
             LightsButton("Formation Lights Next", "Formation LIghts", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Next, s: -1, n: true);
             LightsButton("Formation Lights Prev", "Formation LIghts", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Prev, s: -1, n: true);

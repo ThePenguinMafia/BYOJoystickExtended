@@ -67,6 +67,21 @@ namespace BYOJoystick.Managers.Base
 
         protected abstract void PreMapping();
 
+        /// <summary>
+        /// Logs every VRInteractable type/name when
+        /// <see cref="Plugin.IsVerboseInteractableDiscoveryEnabledFor(string)"/> is enabled for the given tag.
+        /// </summary>
+        protected void LogInteractablesIfEnabled(string tag)
+        {
+            if (!Plugin.IsVerboseInteractableDiscoveryEnabledFor(tag) || Vehicle == null)
+                return;
+
+            var interactables = Vehicle.GetComponentsInChildren<VRInteractable>(true);
+            Plugin.Log($"[{tag}] {interactables.Length} VRInteractables:");
+            foreach (var interactable in interactables)
+                Plugin.Log($"[{tag}] {interactable.GetType().Name} : \"{interactable.name}\"");
+        }
+
         protected abstract void CreateFlightControls();
         protected abstract void CreateAssistControls();
         protected abstract void CreateNavigationControls();

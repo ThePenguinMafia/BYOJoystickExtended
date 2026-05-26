@@ -39,7 +39,7 @@ namespace BYOJoystick.Managers
             FlightButton("Throttle Increase", "Throttle", ByType<VRThrottle, CThrottle>, CThrottle.Increase, r: Throttle);
             FlightButton("Throttle Decrease", "Throttle", ByType<VRThrottle, CThrottle>, CThrottle.Decrease, r: Throttle);
 
-            FlightAxis("Brakes/Airbrakes Axis", "Throttle", ByType<VRThrottle, CThrottle>, CThrottle.Trigger, r: Throttle);
+            FlightAxis("Brakes/Airbrakes Axis", "Throttle", ByType<VRThrottle, CThrottle>, CThrottle.TriggerAxis, r: Throttle);
             FlightButton("Brakes/Airbrakes", "Throttle", ByType<VRThrottle, CThrottle>, CThrottle.Trigger, r: Throttle);
 
             FlightButton("Flaps Cycle", "Flaps (Rear)", ByManifest<VRLever, CLever>, CLever.Cycle, i: 44);

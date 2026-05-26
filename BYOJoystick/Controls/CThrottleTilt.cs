@@ -22,10 +22,12 @@ namespace BYOJoystick.Controls
 
         public override void PostUpdate()
         {
-            if (ThrottleSmoothed.Calculate())
-                SetThrottleValue(Throttle.currentThrottle + ThrottleSmoothed.Delta, true);
-            else if (ThrottleValue != PreviousThrottleValue)
-                SetThrottleValue(ThrottleValue, false);
+            // Always apply latest throttle input, with optional button smoothing delta.
+            // Avoids ignoring direct throttle changes while throttle-up/down button held.
+            var smoothingActive = ThrottleSmoothed.Calculate();
+            var targetThrottle  = ThrottleValue + (smoothingActive ? ThrottleSmoothed.Delta : 0f);
+            if (smoothingActive || targetThrottle != PreviousThrottleValue)
+                SetThrottleValue(targetThrottle, smoothingActive);
 
             if (TiltSmoothed.Calculate())
                 DigitalThumbstickVector.y = TiltSmoothed.Value;

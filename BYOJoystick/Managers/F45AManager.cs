@@ -21,6 +21,7 @@ namespace BYOJoystick.Managers
 
         protected override void PreMapping()
         {
+            LogInteractablesIfEnabled("F45A");
         }
 
         protected override void CreateFlightControls()
@@ -37,7 +38,7 @@ namespace BYOJoystick.Managers
             FlightButton("Tilt Up", "Throttle", ThrottleTilt, CThrottleTilt.TiltUp);
             FlightButton("Tilt Down", "Throttle", ThrottleTilt, CThrottleTilt.TiltDown);
 
-            FlightAxis("Brakes/Airbrakes Axis", "Throttle", ThrottleTilt, CThrottle.Trigger);
+            FlightAxis("Brakes/Airbrakes Axis", "Throttle", ThrottleTilt, CThrottle.TriggerAxis);
             FlightButton("Brakes/Airbrakes", "Throttle", ThrottleTilt, CThrottle.Trigger);
 
             FlightButton("Landing Gear Toggle", "Landing Gear", ByManifest<VRLever, CLever>, CLever.Cycle, i: 2);

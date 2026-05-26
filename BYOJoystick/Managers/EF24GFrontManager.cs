@@ -49,7 +49,7 @@ namespace BYOJoystick.Managers
             FlightButton("Sweep Auto On", "Sweep", ByType<AeroGeometryLever, CSweep>, CSweep.AutoOn);
             FlightButton("Sweep Auto Off", "Sweep", ByType<AeroGeometryLever, CSweep>, CSweep.AutoOff);
 
-            FlightAxis("Brakes/Airbrakes Axis", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
+            FlightAxis("Brakes/Airbrakes Axis", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.TriggerAxis);
             FlightButton("Brakes/Airbrakes", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
 
             FlightButton("Flaps Cycle", "Flaps (Front)", ByManifest<VRLever, CLever>, CLever.Cycle, i: 19);
@@ -226,6 +226,9 @@ namespace BYOJoystick.Managers
 
             DisplayButton("SOI Zoom In", "SOI", SOI, CSOI.ZoomIn);
             DisplayButton("SOI Zoom Out", "SOI", SOI, CSOI.ZoomOut);
+
+            DisplayButton("SOI Radar Elev Up", "SOI", SOI, CSOI.RadarElevUp);
+            DisplayButton("SOI Radar Elev Down", "SOI", SOI, CSOI.RadarElevDown);
 
             DisplayButton("TSD Slew TGP/EOTS", "Slew TGP", TSDInteractable, CInteractable.Use);
             DisplayButton("TSD GPS-S", "GPS Send", TSDInteractable, CInteractable.Use);

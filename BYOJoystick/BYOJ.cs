@@ -338,14 +338,6 @@ namespace BYOJoystick
             Plugin.Log($"Setting active manager to {manager.GameName}...");
 
             manager.MapControls(vehicle);
-            try
-            {
-                manager.DebugPrintManifest();
-            }
-            catch (Exception ex)
-            {
-                Plugin.Log($"Failed to debug print manifest: {ex.Message}");
-            }
 
             Plugin.Log("Initialising bindings...");
             var keyboardBindings = ConfigManager.GetKeyboardBindings(manager.ShortName);
