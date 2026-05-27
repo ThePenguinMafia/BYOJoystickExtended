@@ -1,4 +1,4 @@
-using BYOJoystick.Controls;
+﻿using BYOJoystick.Controls;
 using BYOJoystick.Managers.Base;
 using MFDButtons = MFD.MFDButtons;
 
@@ -68,40 +68,32 @@ namespace BYOJoystick.Managers
 
         protected override void CreateFlightControls()
         {
-            // Primary flight axes
             FlightAxisC("Joystick Pitch", "Joystick", CockpitJoystick, CJoystick.SetPitch);
             FlightAxisC("Joystick Yaw", "Joystick", CockpitJoystick, CJoystick.SetYaw);
             FlightAxisC("Joystick Roll", "Joystick", CockpitJoystick, CJoystick.SetRoll);
 
-            // Throttle
             FlightAxis("Throttle", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Set);
             FlightButton("Throttle Increase", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Increase);
             FlightButton("Throttle Decrease", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Decrease);
 
-            // Brakes/airbrakes
             FlightAxis("Brakes/Airbrakes Axis", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.TriggerAxis);
             FlightButton("Brakes/Airbrakes", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
 
-            // Landing Gear
             FlightButton("Landing Gear Toggle", "Landing Gear", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             FlightButton("Landing Gear Up", "Landing Gear", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             FlightButton("Landing Gear Down", "Landing Gear", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Parking Brake
             FlightButton("Parking Brake Toggle", "Parking Brake", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             FlightButton("Parking Brake On", "Parking Brake", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             FlightButton("Parking Brake Off", "Parking Brake", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Arrestor Hook
             FlightButton("Arrestor Hook Toggle", "Arrestor Hook", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             FlightButton("Arrestor Hook Down", "Arrestor Hook", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             FlightButton("Arrestor Hook Up", "Arrestor Hook", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Weapons
             FlightButton("Fire Weapon", "Joystick", CockpitJoystick, CJoystick.Trigger);
             FlightButton("Cycle Weapons", "Joystick", CockpitJoystick, CJoystick.MenuButton);
 
-            // Eject
             FlightButton("Eject", "Eject", ByType<EjectHandle, CEject>, CEject.Pull, s: -1, n: true);
 
             AddPostUpdateControl("Joystick");
@@ -110,12 +102,11 @@ namespace BYOJoystick.Managers
 
         protected override void CreateAssistControls()
         {
-            // TVC (Thrust Vector Control)
             AssistButton("TVC Power Toggle", "TVC Power", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             AssistButton("TVC Power On", "TVC Power", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             AssistButton("TVC Power Off", "TVC Power", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Flaps Override
+            // flaps override ref has trailing space
             AssistButton("Flaps Override Toggle", "Flaps Override ", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             AssistButton("Flaps Override On", "Flaps Override ", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             AssistButton("Flaps Override Off", "Flaps Override ", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
@@ -123,14 +114,12 @@ namespace BYOJoystick.Managers
 
         protected override void CreateNavigationControls()
         {
-            // Autopilot controls
             NavButton("A/P Nav Mode", "Navigation Mode", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("A/P Spd Hold", "Airspeed Hold", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("A/P Hdg Hold", "Heading Hold", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("A/P Alt Hold", "Altitude Hold", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("A/P Off", "All AP Off", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            // AP adjustments
             NavAxisC("A/P Altitude", "Adjust AP Altitude", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
             NavButton("A/P Alt Increase", "Adjust AP Altitude", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
             NavButton("A/P Alt Decrease", "Adjust AP Altitude", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
@@ -139,10 +128,8 @@ namespace BYOJoystick.Managers
             NavButton("A/P Speed Increase", "Auto Speed Set", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
             NavButton("A/P Speed Decrease", "Auto Speed Set", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
-            // Waypoint
             NavButton("Clear Waypoint", "Clear Waypoint", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            // Altitude Mode Toggle
             NavButton("Toggle Altitude Mode", "Toggle Altitude Mode", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
             AddPostUpdateControl("Adjust AP Altitude");
@@ -153,12 +140,10 @@ namespace BYOJoystick.Managers
         {
             SystemsButton("Clear Cautions", "Clear Cautions", ByManifest<VRButton, CButton>, CButton.Use, i: 6);
 
-            // Master Arm
             SystemsButton("Master Arm Toggle", "Master Arm Switch", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Master Arm On", "Master Arm Switch", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             SystemsButton("Master Arm Off", "Master Arm Switch", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Engine Start
             SystemsButton("Battery Toggle", "Main Battery", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Battery On", "Main Battery", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             SystemsButton("Battery Off", "Main Battery", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
@@ -178,12 +163,10 @@ namespace BYOJoystick.Managers
             SystemsButton("RWR Mode Next", "RWR Mode", RwrModeKnob, CKnobInt.Next, r: "Local/DashCanvas/Dash", s: -1, n: true);
             SystemsButton("RWR Mode Prev", "RWR Mode", RwrModeKnob, CKnobInt.Prev, r: "Local/DashCanvas/Dash", s: -1, n: true);
 
-            // Countermeasures
             SystemsButton("Toggle Chaff", "Toggle Chaff", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Toggle Flares", "Toggle Flares", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Fire Countermeasures", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.MenuButton);
 
-            // Jettison System
             SystemsButton("Jettison Switch Cycle", "Jettison Switch", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
             SystemsButton("Jettison Switch Next", "Jettison Switch", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Next, s: -1, n: true);
             SystemsButton("Jettison Switch Prev", "Jettison Switch", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Prev, s: -1, n: true);
@@ -193,12 +176,10 @@ namespace BYOJoystick.Managers
             SystemsButton("Clear Jettison Marks", "Clear Jettison Marks", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             SystemsButton("Jettison Ext Tanks", "Jettison Ext Tanks", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            // Fuel System
             SystemsButton("Fuel Dump Toggle", "Fuel Dump Switch", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Fuel Dump On", "Fuel Dump Switch", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             SystemsButton("Fuel Dump Off", "Fuel Dump Switch", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // AAR (Air-to-Air Refueling)
             SystemsButton("AAR Door Toggle", "AAR Door", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("AAR Door Open", "AAR Door", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             SystemsButton("AAR Door Close", "AAR Door", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
@@ -206,11 +187,9 @@ namespace BYOJoystick.Managers
 
         protected override void CreateHUDControls()
         {
-            // Helmet controls
             HUDButton("Helmet Visor Toggle", "Toggle Visor", HelmetController, CHelmet.ToggleVisor, s: -1, n: true);
             HUDButton("Helmet NV Toggle", "Toggle NVG", HelmetController, CHelmet.ToggleNightVision, s: -1, n: true);
 
-            // HUD Controls
             HUDAxis("HUD Brightness", "HUD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
             HUDButton("HUD Brightness +", "HUD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
             HUDButton("HUD Brightness -", "HUD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
@@ -223,7 +202,6 @@ namespace BYOJoystick.Managers
             HUDButton("HUD Declutter Next", "HUD Declutter", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Next, s: -1, n: true);
             HUDButton("HUD Declutter Prev", "HUD Declutter", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Prev, s: -1, n: true);
 
-            // HUD Settings (from TSD page)
             HUDButton("HUD Settings", "HUD Settings", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
             AddPostUpdateControl("HUD Brightness");
@@ -232,7 +210,6 @@ namespace BYOJoystick.Managers
 
         protected override void CreateNumPadControls()
         {
-            // ICP Numpad with special functions
             NumPadButton("1 / Swap Radio Frequency", "1 / Swap Radio Frequency", ByManifest<VRButton, CButton>, CButton.Use, i: 7);
             NumPadButton("2 / Set Standby Frequency", "2 / Set Standby Frequency", ByManifest<VRButton, CButton>, CButton.Use, i: 8);
             NumPadButton("3 / Set ILS Frequency", "3 / Set ILS Frequency", ByManifest<VRButton, CButton>, CButton.Use, i: 9);
@@ -261,29 +238,24 @@ namespace BYOJoystick.Managers
             DisplayButton("SOI Zoom In", "SOI", SOI, CSOI.ZoomIn);
             DisplayButton("SOI Zoom Out", "SOI", SOI, CSOI.ZoomOut);
 
-            // MFD Brightness (shared)
             DisplayAxis("MFD Brightness", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
             DisplayButton("MFD Brightness +", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
             DisplayButton("MFD Brightness -", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
-            // Swap MFDs
             DisplayButton("Swap MFDs", "Swap MFDs", ByManifest<VRButton, CButton>, CButton.Use, i: 19);
 
-            // MFD Power Controls
             DisplayButton("MFD Left Power Cycle", "MFD Left Power", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
             DisplayButton("MFD Center Power Cycle", "MFD Center Power", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
             DisplayButton("MFD Right Power Cycle", "MFD Right Power", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
             DisplayButton("MFD Bottom Power Cycle", "MFD Bottom Power", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
 
-            // MMFD (Mini MFD) Power
             DisplayButton("MMFD Left Power Cycle", "MMFD Left Power", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
             DisplayButton("MMFD Right Power Cycle", "MMFD Right Power", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
 
-            // MFD Preset Buttons
             DisplayButton("MPD Preset 1", "MPD Preset 1", ByManifest<VRButton, CButton>, CButton.Use, i: 27);
             DisplayButton("MPD Preset 2", "MPD Preset 2", ByManifest<VRButton, CButton>, CButton.Use, i: 28);
 
-            // MFD 1 (Left)
+            // mfd slots 0 1 2 3
             DisplayButton("MFD1 L1", "MFD Left", MFD, CMFD.Press, (int)MFDButtons.L1, i: 0);
             DisplayButton("MFD1 L2", "MFD Left", MFD, CMFD.Press, (int)MFDButtons.L2, i: 0);
             DisplayButton("MFD1 L3", "MFD Left", MFD, CMFD.Press, (int)MFDButtons.L3, i: 0);
@@ -305,7 +277,6 @@ namespace BYOJoystick.Managers
             DisplayButton("MFD1 B4", "MFD Left", MFD, CMFD.Press, (int)MFDButtons.B4, i: 0);
             DisplayButton("MFD1 B5", "MFD Left", MFD, CMFD.Press, (int)MFDButtons.B5, i: 0);
 
-            // MFD 2 (Center)
             DisplayButton("MFD2 L1", "MFD Center", MFD, CMFD.Press, (int)MFDButtons.L1, i: 1);
             DisplayButton("MFD2 L2", "MFD Center", MFD, CMFD.Press, (int)MFDButtons.L2, i: 1);
             DisplayButton("MFD2 L3", "MFD Center", MFD, CMFD.Press, (int)MFDButtons.L3, i: 1);
@@ -327,7 +298,6 @@ namespace BYOJoystick.Managers
             DisplayButton("MFD2 B4", "MFD Center", MFD, CMFD.Press, (int)MFDButtons.B4, i: 1);
             DisplayButton("MFD2 B5", "MFD Center", MFD, CMFD.Press, (int)MFDButtons.B5, i: 1);
 
-            // MFD 3 (Right)
             DisplayButton("MFD3 L1", "MFD Right", MFD, CMFD.Press, (int)MFDButtons.L1, i: 2);
             DisplayButton("MFD3 L2", "MFD Right", MFD, CMFD.Press, (int)MFDButtons.L2, i: 2);
             DisplayButton("MFD3 L3", "MFD Right", MFD, CMFD.Press, (int)MFDButtons.L3, i: 2);
@@ -349,7 +319,6 @@ namespace BYOJoystick.Managers
             DisplayButton("MFD3 B4", "MFD Right", MFD, CMFD.Press, (int)MFDButtons.B4, i: 2);
             DisplayButton("MFD3 B5", "MFD Right", MFD, CMFD.Press, (int)MFDButtons.B5, i: 2);
 
-            // MFD 4 (Bottom)
             DisplayButton("MFD4 L1", "MFD Bottom", MFD, CMFD.Press, (int)MFDButtons.L1, i: 3);
             DisplayButton("MFD4 L2", "MFD Bottom", MFD, CMFD.Press, (int)MFDButtons.L2, i: 3);
             DisplayButton("MFD4 L3", "MFD Bottom", MFD, CMFD.Press, (int)MFDButtons.L3, i: 3);
@@ -407,27 +376,23 @@ namespace BYOJoystick.Managers
 
         protected override void CreateLightsControls()
         {
-            // Game ref name typo: Formation LIghts (log)
+            // game typo is Formation LIghts
             LightsButton("Formation Lights Cycle", "Formation LIghts", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
             LightsButton("Formation Lights Next", "Formation LIghts", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Next, s: -1, n: true);
             LightsButton("Formation Lights Prev", "Formation LIghts", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Prev, s: -1, n: true);
 
-            // Nav Lights
             LightsButton("Nav Lights Cycle", "Nav Lights", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
             LightsButton("Nav Lights Next", "Nav Lights", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Next, s: -1, n: true);
             LightsButton("Nav Lights Prev", "Nav Lights", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Prev, s: -1, n: true);
 
-            // Landing Light
             LightsButton("Landing Light Toggle", "Landing Light", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             LightsButton("Landing Light On", "Landing Light", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             LightsButton("Landing Light Off", "Landing Light", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Console Lights (analog)
             LightsAxis("Console Lights", "Console Lights", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
             LightsButton("Console Lights +", "Console Lights", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
             LightsButton("Console Lights -", "Console Lights", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
-            // Instrument Night Mode
             LightsButton("Instrument Lights Night Mode", "Instrument Lights Night Mode", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
 
             AddPostUpdateControl("Console Lights");
@@ -435,16 +400,13 @@ namespace BYOJoystick.Managers
 
         protected override void CreateMiscControls()
         {
-            // Canopy
             MiscButton("Canopy Toggle", "Canopy", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             MiscButton("Canopy Open", "Canopy", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             MiscButton("Canopy Close", "Canopy", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Seat Adjustment
             MiscButton("Raise Seat", "Raise Seat", ByManifest<VRButton, CButton>, CButton.Use, i: 30);
             MiscButton("Lower Seat", "Lower Seat", ByManifest<VRButton, CButton>, CButton.Use, i: 31);
 
-            // Quickstart Buttons
             MiscButton("Quickstart Engines", "Quickstart Engines", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             MiscButton("QuickFly", "QuickFly", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
         }

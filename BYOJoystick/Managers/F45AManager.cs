@@ -26,6 +26,7 @@ namespace BYOJoystick.Managers
 
         protected override void CreateFlightControls()
         {
+            // vtol axes and carrier controls
             FlightAxisC("Joystick Pitch", "Joystick", Joysticks, CJoystick.SetPitch);
             FlightAxisC("Joystick Yaw", "Joystick", Joysticks, CJoystick.SetYaw);
             FlightAxisC("Joystick Roll", "Joystick", Joysticks, CJoystick.SetRoll);
@@ -71,6 +72,7 @@ namespace BYOJoystick.Managers
 
         protected override void CreateNavigationControls()
         {
+            // nav and hover ap controls
             NavButton("A/P Nav Mode", "Nav Waypoint AP", ByName<VRInteractable, CInteractable>, CInteractable.Use);
             NavButton("A/P Hvr Mode", "Vertical Control AP Mode", ByManifest<VRButton, CButton>, CButton.Use, i: 20);
             NavButton("A/P Speed Hold", "Speed AP", ByName<VRInteractable, CInteractable>, CInteractable.Use);
@@ -84,6 +86,7 @@ namespace BYOJoystick.Managers
 
         protected override void CreateSystemsControls()
         {
+            // weapons and power systems
             SystemsButton("Clear Cautions", "Dismiss", ByManifest<VRButton, CButton>, CButton.Use, i: 11);
 
             SystemsButton("Master Arm Toggle", "Switch Cover (Master Arm)", ByManifest<VRLever, CLeverCovered>, CLeverCovered.Cycle, c: false, i: 1);

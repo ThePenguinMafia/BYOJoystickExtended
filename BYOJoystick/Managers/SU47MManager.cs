@@ -31,7 +31,7 @@ namespace BYOJoystick.Managers
             return control;
         }
 
-        // Altitude AP button mislabeled "Heading Hold" in game (log: AltitudeAPButton)
+        // altitude ap button is mislabeled as heading hold in game
         private CButton ApAltitudeHoldButton(string name, string root, bool nullable, bool checkName, int idx)
         {
             if (TryGetExistingControl<CButton>(name, out var existingControl))
@@ -207,7 +207,7 @@ namespace BYOJoystick.Managers
 
             HUDButton("HUD Declutter Cycle", "HUD Declutter", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
 
-            // SOI Slew
+            // soi slew
             HUDButton("SOI Slew Button", "SOI", SOI, CSOI.SlewButton);
             HUDAxisC("SOI Slew X", "SOI", SOI, CSOI.SlewX);
             HUDAxisC("SOI Slew Y", "SOI", SOI, CSOI.SlewY);
@@ -309,7 +309,7 @@ namespace BYOJoystick.Managers
 
         protected override void CreateLightsControls()
         {
-            // Log confirms Nav Lights and Strobe Lights are VRLever on SU-47M, NOT VRTwistKnobInt
+            // nav and strobe are vrlever here not knobint
             LightsButton("Nav Lights Toggle", "Nav Lights", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             LightsButton("Strobe Lights Toggle", "Strobe Lights", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             LightsButton("Landing Lights Toggle", "Landing Lights", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);

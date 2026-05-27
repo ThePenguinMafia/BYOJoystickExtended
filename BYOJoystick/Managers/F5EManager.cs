@@ -115,7 +115,7 @@ namespace BYOJoystick.Managers
         {
             SystemsButton("Clear Cautions", "MasterCautionInteractable", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            // Cover switches confirmed in log
+            // engine and arm use covered switches
             SystemsButton("Master Arm Toggle", "coverSwitchInteractable_masterArm", ByName<VRLever, CLeverCovered>, CLeverCovered.Cycle, c: false, s: -1, n: true);
             SystemsButton("Master Arm On", "coverSwitchInteractable_masterArm", ByName<VRLever, CLeverCovered>, CLeverCovered.Set, 1, c: false, n: true);
             SystemsButton("Master Arm Off", "coverSwitchInteractable_masterArm", ByName<VRLever, CLeverCovered>, CLeverCovered.Set, 0, c: false, n: true);
@@ -147,7 +147,7 @@ namespace BYOJoystick.Managers
             SystemsButton("Toggle Chaff", "ChaffInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Toggle Flares", "FlareInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
 
-            // Jettison — cover switch confirmed in log
+            // jettison is a covered switch
             SystemsButton("Jettison Execute", "coverSwitchInteractable_jettisonButton", ByName<VRLever, CLeverCovered>, CLeverCovered.Cycle, c: false, s: -1, n: true);
             SystemsButton("Jettison All Toggle", "JettisonAllInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Jettison Empty Toggle", "JettisonEmptyInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
@@ -162,7 +162,7 @@ namespace BYOJoystick.Managers
             SystemsButton("MMFD Left Power", "powButtonMMFDLeft", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             SystemsButton("MMFD Right Power", "powButtonMMFDRight", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            // Drag Chute — confirmed VRLever in log
+            // drag chute is a lever
             SystemsButton("Drag Chute Deploy", "Drag Chute", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             SystemsButton("Drag Chute Jettison", "Drag Chute", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
             SystemsButton("Drag Chute Toggle", "Drag Chute", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
@@ -193,7 +193,7 @@ namespace BYOJoystick.Managers
             HUDButton("HUD Declutter Next", "DeclutterKnob", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Next, s: -1, n: true);
             HUDButton("HUD Declutter Prev", "DeclutterKnob", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Prev, s: -1, n: true);
 
-            // SOI Slew
+            // soi slew
             HUDButton("SOI Slew Button", "SOI", SOI, CSOI.SlewButton);
             HUDAxisC("SOI Slew X", "SOI", SOI, CSOI.SlewX);
             HUDAxisC("SOI Slew Y", "SOI", SOI, CSOI.SlewY);
@@ -229,7 +229,7 @@ namespace BYOJoystick.Managers
 
         protected override void CreateDisplayControls()
         {
-            // MFD1 — all button names confirmed in log
+            // mfd1 button grid
             DisplayButton("MFD1 Power", "MFD1PowerInteractable", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             DisplayButton("MFD1 T1", "MFD1-Button-T1", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             DisplayButton("MFD1 T2", "MFD1-Button-T2", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
@@ -252,7 +252,7 @@ namespace BYOJoystick.Managers
             DisplayButton("MFD1 R4", "MFD1-Button-R4", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             DisplayButton("MFD1 R5", "MFD1-Button-R5", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            // MFD2 — all button names confirmed in log
+            // mfd2 button grid
             DisplayButton("MFD2 Power", "MFD2PowerInteractable", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             DisplayButton("MFD2 T1", "MFD2-Button-T1", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             DisplayButton("MFD2 T2", "MFD2-Button-T2", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
@@ -311,7 +311,7 @@ namespace BYOJoystick.Managers
             LightsButton("Landing Lights Toggle", "LandingLightInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             LightsButton("Formation Lights Toggle", "FormLightInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             LightsButton("Interior Lights Toggle", "InteriorLightInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
-            // Note: "InsturmentLightInteractable" — typo is in the game, must match exactly
+            // ref typo is in game so keep exact text
             LightsButton("Instrument Lights Toggle", "InsturmentLightInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
         }
 

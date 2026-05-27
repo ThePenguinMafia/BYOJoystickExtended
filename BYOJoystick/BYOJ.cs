@@ -48,6 +48,7 @@ namespace BYOJoystick
 
         private void Start()
         {
+            // force ui input module so byoj menu works in cockpit scenes
             var inputModule = GetComponentInChildren<StandaloneInputModule>();
             var eventSystem = GetComponentInChildren<EventSystem>();
             inputModule.forceModuleActive = true;
@@ -175,6 +176,7 @@ namespace BYOJoystick
 
         private static void CheckCurrentVehicle()
         {
+            // keep manager in sync with scene life cycle
             if (!IsFlyingScene())
             {
                 if (ActiveManager != null)
@@ -279,7 +281,7 @@ namespace BYOJoystick
 
         private static string GetShortName(string vehicleName, bool isSeatA = true)
         {
-            // A is the front seat, B is the rear seat, except for the AH-94 where it's the opposite
+            // seat mapping is reversed on ah-94
             return vehicleName switch
             {
                 "AV-42C"  => "AV42C",

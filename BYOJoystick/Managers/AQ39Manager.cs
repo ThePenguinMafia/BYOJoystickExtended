@@ -27,6 +27,7 @@ namespace BYOJoystick.Managers
 
         protected override void CreateFlightControls()
         {
+            // flight and carrier controls
             FlightAxisC("Joystick Pitch", "Joystick", Joysticks, CJoystick.SetPitch);
             FlightAxisC("Joystick Yaw", "Joystick", Joysticks, CJoystick.SetYaw);
             FlightAxisC("Joystick Roll", "Joystick", Joysticks, CJoystick.SetRoll);
@@ -72,6 +73,7 @@ namespace BYOJoystick.Managers
 
         protected override void CreateNavigationControls()
         {
+            // ap panel is mostly interactables
             NavButton("A/P Nav Mode", "Nav Waypoint AP", ByName<VRInteractable, CInteractable>, CInteractable.Use);
             NavButton("A/P Hdg Hold", "Heading AP", ByName<VRInteractable, CInteractable>, CInteractable.Use);
             NavButton("A/P Alt Hold", "Altitude AP", ByName<VRInteractable, CInteractable>, CInteractable.Use);
@@ -84,6 +86,7 @@ namespace BYOJoystick.Managers
 
         protected override void CreateSystemsControls()
         {
+            // systems mostly from covered switches + cms ui
             SystemsButton("Clear Cautions", "Dismiss", ByManifest<VRButton, CButton>, CButton.Use, i: 11);
 
             SystemsButton("Master Arm Toggle", "Master Arm", ByName<VRLever, CLeverCovered>, CLeverCovered.Cycle, c: false);

@@ -22,9 +22,7 @@ namespace BYOJoystick.Managers
 
         protected override void PreMapping()
         {
-            var interactables = Vehicle.GetComponentsInChildren<VRInteractable>(true);
-            foreach (var i in interactables)
-                Plugin.Log($"[F16C] {i.GetType().Name} : \"{i.name}\"");
+            LogInteractablesIfEnabled("F16");
         }
 
         protected override void CreateFlightControls()
@@ -41,17 +39,24 @@ namespace BYOJoystick.Managers
 
             FlightButton("Flaps Cycle", "FlapsInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             FlightButton("Landing Gear Toggle", "GearInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
+            FlightButton("Landing Gear Up", "GearInteractable", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
+            FlightButton("Landing Gear Down", "GearInteractable", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Parking brake — exact interactable name from log
+            // brake lock uses this ref name
             FlightButton("Parking Brake Toggle", "viperBrakeLockInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
+            FlightButton("Parking Brake On", "viperBrakeLockInteractable", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
+            FlightButton("Parking Brake Off", "viperBrakeLockInteractable", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Arrestor hook — exact name from log: "HookInteractable"
             FlightButton("Arrestor Hook Toggle", "HookInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
-            // Front hook variant also confirmed: "HookInteractable_front"
             FlightButton("Arrestor Hook Toggle (Front)", "HookInteractable_front", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
+            FlightButton("Arrestor Hook Down", "HookInteractable", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
+            FlightButton("Arrestor Hook Up", "HookInteractable", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
+            FlightButton("Arrestor Hook Down (Front)", "HookInteractable_front", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
+            FlightButton("Arrestor Hook Up (Front)", "HookInteractable_front", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Launch/cat bar — exact name from log: "CatHookInteractable"
             FlightButton("Launch Bar Toggle", "CatHookInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
+            FlightButton("Launch Bar Extend", "CatHookInteractable", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
+            FlightButton("Launch Bar Retract", "CatHookInteractable", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
             FlightButton("Fire Weapon", "Joystick", Joysticks, CJoystick.Trigger);
             FlightButton("Cycle Weapons", "Joystick", Joysticks, CJoystick.MenuButton);
@@ -63,20 +68,17 @@ namespace BYOJoystick.Managers
 
         protected override void CreateAssistControls()
         {
-            // Exact log name: "viperlandingGLimitInteractable"
             AssistButton("G-Limiter Toggle", "viperlandingGLimitInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
         }
 
         protected override void CreateNavigationControls()
         {
-            // Exact log names for all AP buttons
             NavButton("A/P Nav Mode", "navAPButton", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             NavButton("A/P Spd Hold", "SpeedHoldButton", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             NavButton("A/P Hdg Hold", "HDGHoldButton", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             NavButton("A/P Alt Hold", "AltHoldButton", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             NavButton("A/P Off", "offAPButton", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // Clear waypoint — exact log name: "ClrWptButton"
             NavButton("Clear Waypoint", "ClrWptButton", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
             NavAxisC("A/P Altitude", "Adjust AP Altitude", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
@@ -91,36 +93,26 @@ namespace BYOJoystick.Managers
 
         protected override void CreateSystemsControls()
         {
-            // Master Caution — exact log name: "MasterCautionInteractable"
             SystemsButton("Clear Cautions", "MasterCautionInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // Master Arm — exact log name: "MasterArmInteractable"
             SystemsButton("Master Arm Toggle", "MasterArmInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // Engine — exact log name: "leftEngineSwitchInteractable"
             SystemsButton("Engine Toggle", "leftEngineSwitchInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
-
-            // Engine switch cover — exact log name: "coverSwitchInteractable_leftEngine"
             SystemsButton("Engine Switch Cover Toggle", "coverSwitchInteractable_leftEngine", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // APU — exact log name: "apuSwitchInteractable"
             SystemsButton("APU Toggle", "apuSwitchInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
-
-            // APU switch cover — exact log name: "coverSwitchInteractable_apuSwitch"
             SystemsButton("APU Switch Cover Toggle", "coverSwitchInteractable_apuSwitch", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // Battery — exact log name: "mainBattSwitchInteractable"
             SystemsButton("Battery Toggle", "mainBattSwitchInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // JFS starter
+            // jfs is a 3 position lever
             SystemsButton("JFS Off", "JFS Starter", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
             SystemsButton("JFS Start 1", "JFS Starter", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             SystemsButton("JFS Start 2", "JFS Starter", ByName<VRLever, CLever>, CLever.Set, s: 2, n: true);
 
-            // Radar — exact log name: "viperRadarInteractable"
             SystemsButton("Radar Power Toggle", "viperRadarInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // RWR — two controls confirmed: "RearRWRPowerKnob" and "RWRButton"
+            // rwr has knob and push button
             SystemsButton("RWR Power Knob Cycle", "RearRWRPowerKnob", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, n: true);
             SystemsButton("RWR Power Knob Next", "RearRWRPowerKnob", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Next, n: true);
             SystemsButton("RWR Power Knob Prev", "RearRWRPowerKnob", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Prev, n: true);
@@ -130,7 +122,6 @@ namespace BYOJoystick.Managers
             SystemsButton("DED Power Toggle", "DED Power", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Fire Countermeasures", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.MenuButton);
 
-            // Jettison — exact log name: "JettisonSwitchInteractable"
             SystemsButton("Jettison Execute", "JettisonSwitchInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
             SystemsButton("Flares Toggle", "Toggle Flares", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
@@ -143,28 +134,22 @@ namespace BYOJoystick.Managers
             HUDButton("Helmet Visor Toggle", "Toggle Visor", HelmetController, CHelmet.ToggleVisor, s: -1, n: true);
             HUDButton("Helmet NV Toggle", "Toggle NVG", HelmetController, CHelmet.ToggleNightVision, s: -1, n: true);
 
-            // Exact log name: "hudPowerInteractable"
-            HUDButton("HUD Power Toggle", "hudPowerInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
+            HUDButton("HUD Power Toggle", "HUD Power", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
+            HUDButton("HMCS Power Toggle", "HMCS Power", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
 
-            // Exact log name: "hmcsPowerInteractable"
-            HUDButton("HMCS Power Toggle", "hmcsPowerInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
-
-            // HUD tint knob: "HUDTintKnob" + roller "HUDTintRoller"
             HUDAxisC("HUD Tint", "HUDTintKnob", ByName<VRTwistKnob, CKnob>, CKnob.Set, n: true);
             HUDButton("HUD Tint Up", "HUDTintKnob", ByName<VRTwistKnob, CKnob>, CKnob.Increase, n: true);
             HUDButton("HUD Tint Down", "HUDTintKnob", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, n: true);
             HUDButton("HUD Tint Roller Up", "HUDTintRoller", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // HUD brightness: "HUDBrightKnob" + roller "HUDRoller"
             HUDAxisC("HUD Brightness", "HUDBrightKnob", ByName<VRTwistKnob, CKnob>, CKnob.Set, n: true);
             HUDButton("HUD Brightness Up", "HUDBrightKnob", ByName<VRTwistKnob, CKnob>, CKnob.Increase, n: true);
             HUDButton("HUD Brightness Down", "HUDBrightKnob", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, n: true);
             HUDButton("HUD Brightness Roller Up", "HUDRoller", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // HMCS brightness roller: "HMCSRoller"
             HUDButton("HMCS Brightness Roller Up", "HMCSRoller", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // ICP Master Modes — exact log names
+            // icp master mode buttons
             HUDButton("COM1", "COM1", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             HUDButton("COM2", "COM2", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             HUDButton("A/A Master Mode", "AirMasterMode", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
@@ -176,7 +161,6 @@ namespace BYOJoystick.Managers
 
         protected override void CreateNumPadControls()
         {
-            // Exact log names: "NumInteractable (1)" through "NumInteractable (0)"
             NumPadButton("1", "NumInteractable (1)", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             NumPadButton("2", "NumInteractable (2)", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             NumPadButton("3", "NumInteractable (3)", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
@@ -194,20 +178,16 @@ namespace BYOJoystick.Managers
 
         protected override void CreateDisplayControls()
         {
-            // Exact log names: "powButtonMMFDLeft", "powButtonMMFDRight"
             DisplayButton("MFD Left Power", "powButtonMMFDLeft", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             DisplayButton("MFD Right Power", "powButtonMMFDRight", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // Swap MFDs — exact log name: "mfdSwapButton"
             DisplayButton("Swap MFDs", "mfdSwapButton", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // MFD Brightness knob + roller
             DisplayAxis("MFD Brightness", "MFDBrightnessKnob", ByName<VRTwistKnob, CKnob>, CKnob.Set, n: true);
             DisplayButton("MFD Brightness Increase", "MFDBrightnessKnob", ByName<VRTwistKnob, CKnob>, CKnob.Increase, n: true);
             DisplayButton("MFD Brightness Decrease", "MFDBrightnessKnob", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, n: true);
             DisplayButton("MFD Brightness Roller Up", "MFDBrightnessRoller", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // SOI
             DisplayButton("SOI Slew Button", "SOI", SOI, CSOI.SlewButton);
             DisplayAxisC("SOI Slew X", "SOI", SOI, CSOI.SlewX);
             DisplayAxisC("SOI Slew Y", "SOI", SOI, CSOI.SlewY);
@@ -220,8 +200,7 @@ namespace BYOJoystick.Managers
             DisplayButton("SOI Zoom In", "SOI", SOI, CSOI.ZoomIn);
             DisplayButton("SOI Zoom Out", "SOI", SOI, CSOI.ZoomOut);
 
-            // MFD1 = Left (i:0), MFD2 = Center (i:1) — log shows MFD1 and MFD2 interactables
-            // MFD power interactables confirmed: "MFD1PowerInteractable", "MFD2PowerInteractable"
+            // mfd slots 0 1 2
             DisplayButton("MFD Left Toggle", "MFD Left", MFD, CMFD.PowerToggle, i: 0);
             DisplayButton("MFD Left On", "MFD Left", MFD, CMFD.PowerOn, i: 0);
             DisplayButton("MFD Left Off", "MFD Left", MFD, CMFD.PowerOff, i: 0);
@@ -332,7 +311,6 @@ namespace BYOJoystick.Managers
             LightsButton("Strobe Lights On", "Strobe Lights", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Set, 1, n: true);
             LightsButton("Strobe Lights Off", "Strobe Lights", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Set, 0, n: true);
 
-            // Exact log name: "viperlandingLightInteractable"
             LightsButton("Landing Lights Toggle", "viperlandingLightInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
         }
 
@@ -340,11 +318,9 @@ namespace BYOJoystick.Managers
         {
             MiscButton("Canopy Toggle", "Canopy", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
 
-            // Exact log names: "raiseSeatInter", "lowerSeatInter"
             MiscButton("Raise Seat", "raiseSeatInter", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             MiscButton("Lower Seat", "lowerSeatInter", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            // Exact log names: "fuelButton", "fuelDrainButton"
             MiscButton("Fuel Port Toggle", "fuelButton", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             MiscButton("Fuel Dump Toggle", "fuelDrainButton", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
