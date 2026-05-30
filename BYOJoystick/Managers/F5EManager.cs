@@ -20,7 +20,7 @@ namespace BYOJoystick.Managers
 
         protected override void PreMapping()
         {
-            LogInteractablesIfEnabled("F5E");
+            LogInteractablesIfEnabled(ShortName);
         }
 
         protected override void CreateFlightControls()
@@ -89,26 +89,26 @@ namespace BYOJoystick.Managers
             NavButton("Toggle Altitude Mode", "AltitudeModeInteractable", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             NavButton("Clear Waypoint", "ClrWptButton", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            NavAxisC("A/P Altitude", "APAltKnobInteractable", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
-            NavButton("A/P Altitude Increase", "APAltKnobInteractable", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
-            NavButton("A/P Altitude Decrease", "APAltKnobInteractable", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
+            NavAxisC("A/P Altitude", "Adjust AP Altitude", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
+            NavButton("A/P Altitude Increase", "Adjust AP Altitude", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
+            NavButton("A/P Altitude Decrease", "Adjust AP Altitude", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
-            NavAxisC("A/P Speed", "APSpeedAdjustInteractable", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
-            NavButton("A/P Speed Increase", "APSpeedAdjustInteractable", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
-            NavButton("A/P Speed Decrease", "APSpeedAdjustInteractable", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
+            NavAxisC("A/P Speed", "Auto Speed Set", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
+            NavButton("A/P Speed Increase", "Auto Speed Set", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
+            NavButton("A/P Speed Decrease", "Auto Speed Set", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
-            NavAxisC("A/P Heading", "APHeadingKnobInteractable", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
-            NavButton("A/P Heading Increase", "APHeadingKnobInteractable", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
-            NavButton("A/P Heading Decrease", "APHeadingKnobInteractable", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
+            NavAxisC("A/P Heading", "AP Heading Set", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
+            NavButton("A/P Heading Increase", "AP Heading Set", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
+            NavButton("A/P Heading Decrease", "AP Heading Set", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
-            NavAxisC("ILS Course", "CrsKnobInteractable", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
-            NavButton("ILS Course Increase", "CrsKnobInteractable", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
-            NavButton("ILS Course Decrease", "CrsKnobInteractable", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
+            NavAxisC("ILS Course", "Course Set", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
+            NavButton("ILS Course Increase", "Course Set", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
+            NavButton("ILS Course Decrease", "Course Set", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
-            AddPostUpdateControl("APAltKnobInteractable");
-            AddPostUpdateControl("APSpeedAdjustInteractable");
-            AddPostUpdateControl("APHeadingKnobInteractable");
-            AddPostUpdateControl("CrsKnobInteractable");
+            AddPostUpdateControl("Adjust AP Altitude");
+            AddPostUpdateControl("Auto Speed Set");
+            AddPostUpdateControl("AP Heading Set");
+            AddPostUpdateControl("Course Set");
         }
 
         protected override void CreateSystemsControls()
@@ -162,10 +162,10 @@ namespace BYOJoystick.Managers
             SystemsButton("MMFD Left Power", "powButtonMMFDLeft", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             SystemsButton("MMFD Right Power", "powButtonMMFDRight", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            // drag chute is a lever
-            SystemsButton("Drag Chute Deploy", "Drag Chute", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
-            SystemsButton("Drag Chute Jettison", "Drag Chute", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
-            SystemsButton("Drag Chute Toggle", "Drag Chute", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
+            // drag chute handle is a generic interactable in this mod
+            SystemsButton("Drag Chute Deploy", "Drag Chute", ByName<VRInteractable, CInteractable>, CInteractable.Use, s: -1, n: true);
+            SystemsButton("Drag Chute Jettison", "Drag Chute", ByName<VRInteractable, CInteractable>, CInteractable.Use, s: -1, n: true);
+            SystemsButton("Drag Chute Toggle", "Drag Chute", ByName<VRInteractable, CInteractable>, CInteractable.Use, s: -1, n: true);
         }
 
         protected override void CreateHUDControls()
@@ -181,13 +181,13 @@ namespace BYOJoystick.Managers
             HUDButton("HMCS Power On", "hmcsPowerInteractable", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             HUDButton("HMCS Power Off", "hmcsPowerInteractable", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            HUDAxisC("HUD Brightness", "HUDBrightKnob", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
-            HUDButton("HUD Brightness Up", "HUDBrightKnob", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
-            HUDButton("HUD Brightness Down", "HUDBrightKnob", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
+            HUDAxisC("HUD Brightness", "HUD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
+            HUDButton("HUD Brightness Up", "HUD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
+            HUDButton("HUD Brightness Down", "HUD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
-            HUDAxisC("MFD Brightness", "MFDBrightnessKnob", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
-            HUDButton("MFD Brightness Up", "MFDBrightnessKnob", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
-            HUDButton("MFD Brightness Down", "MFDBrightnessKnob", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
+            HUDAxisC("MFD Brightness", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
+            HUDButton("MFD Brightness Up", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
+            HUDButton("MFD Brightness Down", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
             HUDButton("HUD Declutter Cycle", "DeclutterKnob", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);
             HUDButton("HUD Declutter Next", "DeclutterKnob", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Next, s: -1, n: true);
@@ -206,8 +206,8 @@ namespace BYOJoystick.Managers
             HUDButton("SOI Zoom In", "SOI", SOI, CSOI.ZoomIn);
             HUDButton("SOI Zoom Out", "SOI", SOI, CSOI.ZoomOut);
 
-            AddPostUpdateControl("HUDBrightKnob");
-            AddPostUpdateControl("MFDBrightnessKnob");
+            AddPostUpdateControl("HUD Brightness");
+            AddPostUpdateControl("MFD Brightness");
             AddPostUpdateControl("SOI");
         }
 
@@ -284,11 +284,11 @@ namespace BYOJoystick.Managers
             RadioButton("Radio Channel Next", "RadioChannelInteractable", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Next, s: -1, n: true);
             RadioButton("Radio Channel Prev", "RadioChannelInteractable", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Prev, s: -1, n: true);
 
-            RadioAxisC("Comms Volume", "CommsVolumeKnob", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
-            RadioButton("Comms Volume Up", "CommsVolumeKnob", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
-            RadioButton("Comms Volume Down", "CommsVolumeKnob", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
+            RadioAxisC("Comms Volume", "Comm Radio Volume", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
+            RadioButton("Comms Volume Up", "Comm Radio Volume", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
+            RadioButton("Comms Volume Down", "Comm Radio Volume", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
-            AddPostUpdateControl("CommsVolumeKnob");
+            AddPostUpdateControl("Comm Radio Volume");
         }
 
         protected override void CreateMusicControls()
@@ -297,11 +297,11 @@ namespace BYOJoystick.Managers
             MusicButton("Music Next", "NextButton", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             MusicButton("Music Prev", "PrevButton", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            MusicAxisC("Radio Volume", "RadioVolumeKnob", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
-            MusicButton("Radio Volume Up", "RadioVolumeKnob", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
-            MusicButton("Radio Volume Down", "RadioVolumeKnob", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
+            MusicAxisC("Radio Volume", "Radio Volume", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
+            MusicButton("Radio Volume Up", "Radio Volume", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
+            MusicButton("Radio Volume Down", "Radio Volume", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
-            AddPostUpdateControl("RadioVolumeKnob");
+            AddPostUpdateControl("Radio Volume");
         }
 
         protected override void CreateLightsControls()

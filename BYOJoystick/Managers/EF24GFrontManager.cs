@@ -29,6 +29,7 @@ namespace BYOJoystick.Managers
             if (MFDPortalManagers[0] == null)
                 throw new InvalidOperationException("MFDPortalManager not found");
             PortalSOISwitcher = GetGameObject(Cockpit).GetComponentInChildren<MultiPortalSOISwitcher>(true);
+            LogInteractablesIfEnabled(ShortName);
         }
 
         protected override void CreateFlightControls()

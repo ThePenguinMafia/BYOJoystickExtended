@@ -21,7 +21,7 @@ namespace BYOJoystick.Managers
 
         protected override void PreMapping()
         {
-            LogInteractablesIfEnabled("F45A");
+            LogInteractablesIfEnabled(ShortName);
         }
 
         protected override void CreateFlightControls()

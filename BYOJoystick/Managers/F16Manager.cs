@@ -22,7 +22,7 @@ namespace BYOJoystick.Managers
 
         protected override void PreMapping()
         {
-            LogInteractablesIfEnabled("F16");
+            LogInteractablesIfEnabled(ShortName);
         }
 
         protected override void CreateFlightControls()
@@ -93,7 +93,7 @@ namespace BYOJoystick.Managers
 
         protected override void CreateSystemsControls()
         {
-            SystemsButton("Clear Cautions", "MasterCautionInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
+            SystemsButton("Clear Cautions", "Clear Cautions", ByName<VRButton, CButton>, CButton.Use, n: true);
 
             SystemsButton("Master Arm Toggle", "MasterArmInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
@@ -137,14 +137,14 @@ namespace BYOJoystick.Managers
             HUDButton("HUD Power Toggle", "HUD Power", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             HUDButton("HMCS Power Toggle", "HMCS Power", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
 
-            HUDAxisC("HUD Tint", "HUDTintKnob", ByName<VRTwistKnob, CKnob>, CKnob.Set, n: true);
-            HUDButton("HUD Tint Up", "HUDTintKnob", ByName<VRTwistKnob, CKnob>, CKnob.Increase, n: true);
-            HUDButton("HUD Tint Down", "HUDTintKnob", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, n: true);
+            HUDAxisC("HUD Tint", "HUD Tint", ByName<VRTwistKnob, CKnob>, CKnob.Set, n: true);
+            HUDButton("HUD Tint Up", "HUD Tint", ByName<VRTwistKnob, CKnob>, CKnob.Increase, n: true);
+            HUDButton("HUD Tint Down", "HUD Tint", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, n: true);
             HUDButton("HUD Tint Roller Up", "HUDTintRoller", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            HUDAxisC("HUD Brightness", "HUDBrightKnob", ByName<VRTwistKnob, CKnob>, CKnob.Set, n: true);
-            HUDButton("HUD Brightness Up", "HUDBrightKnob", ByName<VRTwistKnob, CKnob>, CKnob.Increase, n: true);
-            HUDButton("HUD Brightness Down", "HUDBrightKnob", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, n: true);
+            HUDAxisC("HUD Brightness", "HUD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Set, n: true);
+            HUDButton("HUD Brightness Up", "HUD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Increase, n: true);
+            HUDButton("HUD Brightness Down", "HUD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, n: true);
             HUDButton("HUD Brightness Roller Up", "HUDRoller", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
             HUDButton("HMCS Brightness Roller Up", "HMCSRoller", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
@@ -155,8 +155,8 @@ namespace BYOJoystick.Managers
             HUDButton("A/A Master Mode", "AirMasterMode", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             HUDButton("A/G Master Mode", "GroundMasterMode", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            AddPostUpdateControl("HUDTintKnob");
-            AddPostUpdateControl("HUDBrightKnob");
+            AddPostUpdateControl("HUD Tint");
+            AddPostUpdateControl("HUD Brightness");
         }
 
         protected override void CreateNumPadControls()
@@ -183,9 +183,9 @@ namespace BYOJoystick.Managers
 
             DisplayButton("Swap MFDs", "mfdSwapButton", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            DisplayAxis("MFD Brightness", "MFDBrightnessKnob", ByName<VRTwistKnob, CKnob>, CKnob.Set, n: true);
-            DisplayButton("MFD Brightness Increase", "MFDBrightnessKnob", ByName<VRTwistKnob, CKnob>, CKnob.Increase, n: true);
-            DisplayButton("MFD Brightness Decrease", "MFDBrightnessKnob", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, n: true);
+            DisplayAxis("MFD Brightness", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Set, n: true);
+            DisplayButton("MFD Brightness Increase", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Increase, n: true);
+            DisplayButton("MFD Brightness Decrease", "MFD Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, n: true);
             DisplayButton("MFD Brightness Roller Up", "MFDBrightnessRoller", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
             DisplayButton("SOI Slew Button", "SOI", SOI, CSOI.SlewButton);
@@ -273,7 +273,7 @@ namespace BYOJoystick.Managers
             DisplayButton("MFD Right B4", "MFD Right", MFD, CMFD.Press, (int)MFDButtons.B4, i: 2);
             DisplayButton("MFD Right B5", "MFD Right", MFD, CMFD.Press, (int)MFDButtons.B5, i: 2);
 
-            AddPostUpdateControl("MFDBrightnessKnob");
+            AddPostUpdateControl("MFD Brightness");
             AddPostUpdateControl("SOI");
             AddPostUpdateControl("MFD Left");
             AddPostUpdateControl("MFD Center");
@@ -324,7 +324,7 @@ namespace BYOJoystick.Managers
             MiscButton("Fuel Port Toggle", "fuelButton", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             MiscButton("Fuel Dump Toggle", "fuelDrainButton", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
 
-            MiscButton("Fuel Dump Cover Toggle", "Switch Cover (Fuel Dump)", ByName<VRSwitchCover, CLeverCovered>, CLeverCovered.Cycle, s: -1, n: true);
+            MiscButton("Fuel Dump Cover Toggle", "Switch Cover (Fuel Dump)", ByName<VRLever, CLeverCovered>, CLeverCovered.Cycle, s: -1, n: true);
         }
     }
 }

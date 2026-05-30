@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.3.2 — binding audit fixes (F-5E, F-16, A-10D, AH-94)
+
+Full-cockpit premapping pass; fixes broken HOTAS bindings found via interactable dumps.
+
+### Fixes
+- **F-5E:** AP altitude/speed/heading/course, HUD/MFD brightness, comm & MP3 radio volume — use in-game control reference names (not GameObject names); drag chute stays `VRInteractable`
+- **F-16:** HUD tint/brightness, MFD brightness, Clear Cautions (`VRButton`), fuel dump cover (`VRLever`)
+- **A-10D:** instrument brightness knob (was wrong manifest index 18 on twist-knob array)
+- **AH-94 Front:** removed instrument brightness bindings (knob exists rear seat only)
+
+### Dev
+- Verbose interactable discovery disabled by default (`VerboseInteractableDiscoveryForShortName = ""`)
+- All aircraft managers call `LogInteractablesIfEnabled(ShortName)` when discovery is enabled in source
+
+---
+
 ## v1.3.1 - mapping parity + comment cleanup
 
 - added missing f-16 discrete controls for launch bar and arrestor hook up/down

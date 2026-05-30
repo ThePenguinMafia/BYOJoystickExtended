@@ -24,6 +24,7 @@ namespace BYOJoystick.Managers
 
         protected override void PreMapping()
         {
+            LogInteractablesIfEnabled(ShortName);
         }
 
         protected override void CreateFlightControls()
@@ -291,7 +292,7 @@ namespace BYOJoystick.Managers
             LightsButton("Instrument Lights On", "Instrument Lights", ByManifest<VRLever, CLever>, CLever.Set, 1, i: 18);
             LightsButton("Instrument Lights Off", "Instrument Lights", ByManifest<VRLever, CLever>, CLever.Set, 0, i: 18);
 
-            LightsAxis("Instrument Brightness", "Instrument Brightness", ByManifest<VRTwistKnob, CKnob>, CKnob.Set, i: 18);
+            LightsAxis("Instrument Brightness", "Instrument Brightness", ByName<VRTwistKnob, CKnob>, CKnob.Set, n: true);
 
             LightsButton("Interior Lights Toggle", "Interior Lights", ByManifest<VRLever, CLever>, CLever.Cycle, i: 19);
             LightsButton("Landing Lights Toggle", "Landing Lights", ByManifest<VRLever, CLever>, CLever.Cycle, i: 21);
