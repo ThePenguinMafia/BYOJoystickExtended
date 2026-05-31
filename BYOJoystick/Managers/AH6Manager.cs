@@ -1,5 +1,6 @@
 using BYOJoystick.Controls;
 using BYOJoystick.Managers.Base;
+using VTOLVR.Multiplayer;
 
 namespace BYOJoystick.Managers
 {
@@ -11,6 +12,8 @@ namespace BYOJoystick.Managers
 
        // private static string SideJoystick => "PassengerOnlyObjects/localCockpit/controls.001/vtol4adjustableJoystick_rear";
         private static string CenterJoystick => "AH-6_V1/Fuselage/Front_Interior/StickMount/PilotStickParent/Pi_Pitch/Pi_Roll/centerJoystickBar.001/ergo/cYaw/centerJoystick.001/centerJoyInteractable";
+
+        private static string BailHandle => "PassengerOnlyObjects/bailBase_rear";
 
         // Custom method to get the cyclic (joystick) by finding it in the interactables
         private CJoystick GetCyclic(string name, string root, bool nullable, bool checkName, int idx)
@@ -152,6 +155,9 @@ namespace BYOJoystick.Managers
             SystemsButton("CM Rate +", "Countermeasures Release Rate +", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             SystemsButton("CM Rate -", "Countermeasures Release Rate -", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
+            // Combat collective grip button fires countermeasures
+            SystemsButton("Fire Countermeasures", "Combat Collective (Rear)", ByName<VRThrottle, CThrottle>, CThrottle.MenuButton, s: -1, n: true);
+
             // Jettison
             SystemsButton("Jettison", "Jettison (Rear)", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             SystemsButton("Mark Jett L TIP", "Mark Jett L TIP (Rear)", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
@@ -224,6 +230,8 @@ namespace BYOJoystick.Managers
 
         protected override void CreateRadioControls()
         {
+            RadioButton("Radio Transmit", "Radio", ByType<CockpitTeamRadioManager, CRadio>, CRadio.Transmit, s: -1, n: true);
+
             // Comm Radio
             RadioAxis("Comm Volume", "Comm Radio Volume (Rear)", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
             RadioButton("Comm Volume +", "Comm Radio Volume (Rear)", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
@@ -293,6 +301,8 @@ namespace BYOJoystick.Managers
 
             // Seat switching (unique to side-by-side helicopters)
             MiscButton("Switch Seat", "Switch Seat (Rear)", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
+
+            MiscButton("Eject", "Eject", ByType<EjectHandle, CEject>, CEject.Pull, r: BailHandle, n: true);
 
             // Control Override
             MiscButton("Control Override Cycle", "Control Override", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, s: -1, n: true);

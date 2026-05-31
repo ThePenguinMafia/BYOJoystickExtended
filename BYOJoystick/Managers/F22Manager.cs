@@ -1,5 +1,6 @@
 ﻿using BYOJoystick.Controls;
 using BYOJoystick.Managers.Base;
+using VTOLVR.Multiplayer;
 using MFDButtons = MFD.MFDButtons;
 
 namespace BYOJoystick.Managers
@@ -346,6 +347,8 @@ namespace BYOJoystick.Managers
 
         protected override void CreateRadioControls()
         {
+            RadioButton("Radio Transmit", "Radio", ByType<CockpitTeamRadioManager, CRadio>, CRadio.Transmit, s: -1, n: true);
+
             RadioAxis("Comm Volume", "Comm Radio Volume", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);
             RadioButton("Comm Volume +", "Comm Radio Volume", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
             RadioButton("Comm Volume -", "Comm Radio Volume", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);

@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.3.3 — F-22 radio & AH-6 bindings
+
+### Fixes
+- **F-22:** Radio Transmit (PTT) binding
+- **AH-6 Little Bird:** Eject and Fire Countermeasures bindings
+
+---
+
 ## v1.3.2 — binding audit fixes (F-5E, F-16, A-10D, AH-94)
 
 Full-cockpit premapping pass; fixes broken HOTAS bindings found via interactable dumps.
