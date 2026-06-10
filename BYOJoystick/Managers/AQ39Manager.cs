@@ -19,12 +19,6 @@ namespace BYOJoystick.Managers
         {
             return GetJoysticksByPaths(name, SideJoystick, CenterJoystick);
         }
-
-        protected override void PreMapping()
-        {
-            LogInteractablesIfEnabled(ShortName);
-        }
-
         protected override void CreateFlightControls()
         {
             // flight and carrier controls

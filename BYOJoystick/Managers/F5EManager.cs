@@ -1,4 +1,4 @@
-﻿using BYOJoystick.Controls;
+using BYOJoystick.Controls;
 using BYOJoystick.Managers.Base;
 using VTOLVR.Multiplayer;
 
@@ -17,12 +17,6 @@ namespace BYOJoystick.Managers
         {
             return GetJoysticksByPaths(name, SideJoystick, CenterJoystick);
         }
-
-        protected override void PreMapping()
-        {
-            LogInteractablesIfEnabled(ShortName);
-        }
-
         protected override void CreateFlightControls()
         {
             FlightAxisC("Joystick Pitch", "Joystick", Joysticks, CJoystick.SetPitch);

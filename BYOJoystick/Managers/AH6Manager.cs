@@ -44,12 +44,6 @@ namespace BYOJoystick.Managers
         {
             return GetJoysticksByPaths(name, CenterJoystick, null);
         }
-
-        protected override void PreMapping()
-        {
-            LogInteractablesIfEnabled(ShortName);
-        }
-
         protected override void CreateFlightControls()
         {
             // Cyclic (helicopter flight stick) - using custom GetCyclic method

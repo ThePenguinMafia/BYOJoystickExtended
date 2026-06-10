@@ -1,4 +1,4 @@
-﻿using BYOJoystick.Controls;
+using BYOJoystick.Controls;
 using BYOJoystick.Managers.Base;
 using VTOLVR.Multiplayer;
 using MFDButtons = MFD.MFDButtons;
@@ -61,12 +61,6 @@ namespace BYOJoystick.Managers
 
         private CKnobInt RwrModeKnob(string name, string root, bool nullable, bool checkName, int idx)
             => DashTwistKnobInt("RWR Mode", "RWRModeInteractable", root, nullable, idx);
-
-        protected override void PreMapping()
-        {
-            LogInteractablesIfEnabled(ShortName);
-        }
-
         protected override void CreateFlightControls()
         {
             FlightAxisC("Joystick Pitch", "Joystick", CockpitJoystick, CJoystick.SetPitch);

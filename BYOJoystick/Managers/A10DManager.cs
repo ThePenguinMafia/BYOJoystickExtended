@@ -21,12 +21,6 @@ namespace BYOJoystick.Managers
         {
             return GetJoysticksByPaths(name, SideJoystick, CenterStick);
         }
-
-        protected override void PreMapping()
-        {
-            LogInteractablesIfEnabled(ShortName);
-        }
-
         protected override void CreateFlightControls()
         {
             // Axes

@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.3.4 — AV-8B Harrier support
+
+Adds full BYOJ support for the [AV-8B Harrier](https://steamcommunity.com/sharedfiles/filedetails/?id=3702163088) mod aircraft, mapped from in-game manifest/interactable dumps.
+
+### AV-8B Harrier (new)
+- **New manager:** flight (manifest stick + throttle, brakes axis, gear/flaps/brake lock, water injection), assist (SAS/trim/G-limit), navigation (nav/hover/alt/hdg/spd AP), systems (engine/APU/battery, CMS, RWR/RCS, fuel probe/dump, jettison panel), HUD (SOI, brightness/declutter), displays (MFD1/MFD2 edge keys, MFD/MMFD power, brightness), numpad, radio, lights, music, canopy/seat
+- **Vehicle names:** recognises `AV-8B` and `AV-8B Harrier`
+
+### Dev
+- **PreMapping:** default implementation on base `Manager` calls `LogInteractablesIfEnabled` for every aircraft; EF-24G front/rear still override for MFD portal setup
+- Duplicate per-manager `PreMapping()` stubs removed where they only logged interactables
+
+---
+
 ## v1.3.3 — F-22 radio & AH-6 bindings
 
 ### Fixes

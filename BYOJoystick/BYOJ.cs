@@ -73,6 +73,7 @@ namespace BYOJoystick
             AddManager(new SU47MManager());
             AddManager(new F5EManager());
             AddManager(new AQ39Manager());
+            AddManager(new AV8BManager());
 
             ConfigManager.Initialise(Managers);
             BYOJUI.Initialise();
@@ -298,6 +299,8 @@ namespace BYOJoystick
                 "F-5E Tiger" => "F5E",
                 "AQ-39" => "AQ39",
                 "AQ-39 Attack Drone" => "AQ39",
+                "AV-8B" => "AV8B",
+                "AV-8B Harrier" => "AV8B",
                 _         => throw new InvalidOperationException($"Vehicle {vehicleName} not supported")
             };
         }

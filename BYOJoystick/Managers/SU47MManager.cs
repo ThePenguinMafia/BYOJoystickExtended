@@ -1,4 +1,4 @@
-﻿using BYOJoystick.Controls;
+using BYOJoystick.Controls;
 using BYOJoystick.Managers.Base;
 using VTOLVR.Multiplayer;
 using MFDButtons = MFD.MFDButtons;
@@ -55,12 +55,6 @@ namespace BYOJoystick.Managers
                 return null;
             throw new System.InvalidOperationException("AltitudeAPButton not found.");
         }
-
-        protected override void PreMapping()
-        {
-            LogInteractablesIfEnabled(ShortName);
-        }
-
         protected override void CreateFlightControls()
         {
             FlightAxisC("Joystick Pitch", "Joystick", CockpitJoystick, CJoystick.SetPitch);

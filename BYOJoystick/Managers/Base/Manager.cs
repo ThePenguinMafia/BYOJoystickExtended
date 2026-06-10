@@ -65,7 +65,10 @@ namespace BYOJoystick.Managers.Base
             Plugin.Log($"Setup {ControlActions.Values.Count} control actions for {GameName}.");
         }
 
-        protected abstract void PreMapping();
+        protected virtual void PreMapping()
+        {
+            LogInteractablesIfEnabled(ShortName);
+        }
 
         /// <summary>
         /// Logs every VRInteractable type/name when
