@@ -2,7 +2,7 @@
 
 BYOJoystick Extended allows you to use your HOTAS, joystick, keyboard, and other input devices with VTOL VR — including modded aircraft not supported by the original mod.
 
-It features a user friendly interface for binding controls on a per-aircraft basis and supports both multiplayer and multicrew vehicles.
+It features a user friendly interface for binding controls on a per-aircraft basis and supports both multiplayer and multicrew vehicles. The mod is **client-side only** — other players on a multiplayer server do not need BYOJoystick installed.
 
 ## Supported Aircraft
 
@@ -22,7 +22,7 @@ It features a user friendly interface for binding controls on a per-aircraft bas
 - **F-16C Viper** — Full MFD, systems, lights, and radio support
 - **SU-47M Berkut** — Full support including Wing Fold, dual engines, TVC, and CMFD
 - **F-5E Tiger III** — Full support including VRButton-based MFDs, dual engines, and carrier ops controls
-- **AV-8B Harrier** — Full support including hover AP, water injection, refuel probe, and dual MFD edge keys
+- **AV-8B Harrier** — Full support including nozzle tilt, hover AP, water injection, refuel probe, and dual MFD edge keys
 
 ## Download
 

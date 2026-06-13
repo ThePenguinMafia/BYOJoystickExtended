@@ -38,11 +38,16 @@ namespace BYOJoystick.Managers
             FlightAxisC("Joystick Yaw", "Joystick", CockpitJoystick, CJoystick.SetYaw);
             FlightAxisC("Joystick Roll", "Joystick", CockpitJoystick, CJoystick.SetRoll);
 
-            FlightAxis("Throttle", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Set);
-            FlightButton("Throttle Increase", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Increase);
-            FlightButton("Throttle Decrease", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Decrease);
-            FlightAxis("Brakes/Airbrakes Axis", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.TriggerAxis);
-            FlightButton("Brakes/Airbrakes", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
+            FlightAxis("Throttle", "Throttle", ThrottleTilt, CThrottle.Set);
+            FlightButton("Throttle Increase", "Throttle", ThrottleTilt, CThrottle.Increase);
+            FlightButton("Throttle Decrease", "Throttle", ThrottleTilt, CThrottle.Decrease);
+
+            FlightAxis("Nozzle", "Throttle", ThrottleTilt, CThrottleTilt.SetTiltTarget);
+            FlightButton("Nozzle Forward", "Throttle", ThrottleTilt, CThrottleTilt.TiltUp);
+            FlightButton("Nozzle Aft", "Throttle", ThrottleTilt, CThrottleTilt.TiltDown);
+
+            FlightAxis("Brakes/Airbrakes Axis", "Throttle", ThrottleTilt, CThrottle.TriggerAxis);
+            FlightButton("Brakes/Airbrakes", "Throttle", ThrottleTilt, CThrottle.Trigger);
 
             FlightButton("Landing Gear Toggle", "Landing Gear", ByManifest<VRLever, CLever>, CLever.Cycle, i: 11);
             FlightButton("Landing Gear Up", "Landing Gear", ByManifest<VRLever, CLever>, CLever.Set, s: 1, i: 11);
@@ -66,7 +71,7 @@ namespace BYOJoystick.Managers
 
             FlightButton("Fire Weapon", "Joystick", CockpitJoystick, CJoystick.Trigger);
             FlightButton("Cycle Weapons", "Joystick", CockpitJoystick, CJoystick.MenuButton);
-            FlightButton("Fire Countermeasures", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.MenuButton);
+            FlightButton("Fire Countermeasures", "Throttle", ThrottleTilt, CThrottle.MenuButton);
             FlightButton("Eject", "Eject", ByType<EjectHandle, CEject>, CEject.Pull, s: -1, n: true);
 
             AddPostUpdateControl("Joystick");

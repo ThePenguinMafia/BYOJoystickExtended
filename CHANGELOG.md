@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.3.5 — Client-side tag & AV-8B nozzle
+
+### Fixes
+- **Multiplayer:** marked mod as client-side in `item.json` (`ClientSide` tag) so hosts and other players do not need BYOJoystick installed
+- **AV-8B:** added nozzle tilt axis and forward/aft button bindings via `CThrottleTilt` (Harrier uses the same throttle thumbstick / `TiltController` as AV-42C)
+
+---
+
 ## v1.3.4 — AV-8B Harrier support
 
 Adds full BYOJ support for the [AV-8B Harrier](https://steamcommunity.com/sharedfiles/filedetails/?id=3702163088) mod aircraft, mapped from in-game manifest/interactable dumps.
