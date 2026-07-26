@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.3.6 — missing vehicle tabs, F-16/F-5 bindings, Key2Joy axes
+
+### Fixes
+- **Config UI:** vehicle tab paging used the parent width instead of the masked VehicleSelection strip, so T-55 Front/Rear and EF-24G Front were clipped off-screen; paging controls moved under the tab bar
+- **F-16:** Landing Gear, Master Arm, and Jettison Execute now use control reference names + correct types (`VRLever` / `VRTwistKnobInt`) instead of GameObject names via `CInteractable`
+- **F-5E:** Landing Gear, Flaps, Master Arm, and Jettison bindings updated to manifest control reference names (same GameObject-name bug)
+- **Key2Joy / virtual joysticks:** axis bindings now re-read current stick state each frame so pitch/yaw/roll work when buffered DirectInput axis events are missing
+
+---
+
 ## v1.3.5 — Client-side tag & AV-8B nozzle
 
 ### Fixes

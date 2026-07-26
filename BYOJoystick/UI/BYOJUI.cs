@@ -93,7 +93,8 @@ namespace BYOJoystick.UI
                 rt.anchorMax = new Vector2(0f, 1f);
                 rt.pivot = new Vector2(0f, 1f);
                 // position slightly inset and size a bit larger for touchability
-                rt.anchoredPosition = new Vector2(12f, -12f);
+                // Sit just under the vehicle bar so paging is visible (not behind the header)
+                rt.anchoredPosition = new Vector2(12f, -118f);
                 rt.sizeDelta = new Vector2(40f, 34f);
                 var img = prevGo.GetComponent<Image>();
                 img.color = new Color(0.15f, 0.15f, 0.15f, 0.95f);
@@ -129,8 +130,8 @@ namespace BYOJoystick.UI
                 rt.anchorMin = new Vector2(1f, 1f);
                 rt.anchorMax = new Vector2(1f, 1f);
                 rt.pivot = new Vector2(1f, 1f);
-                // move left from the right edge so it does not touch the edge and not overlap prev
-                rt.anchoredPosition = new Vector2(-52f, -12f);
+                // Sit just under the vehicle bar so paging is visible (not behind the header)
+                rt.anchoredPosition = new Vector2(-52f, -118f);
                 rt.sizeDelta = new Vector2(40f, 34f);
                 var img = nextGo.GetComponent<Image>();
                 img.color = new Color(0.15f, 0.15f, 0.15f, 0.95f);
@@ -165,7 +166,7 @@ namespace BYOJoystick.UI
                 rt.anchorMin = new Vector2(0.5f, 1f);
                 rt.anchorMax = new Vector2(0.5f, 1f);
                 rt.pivot = new Vector2(0.5f, 1f);
-                rt.anchoredPosition = new Vector2(0f, -10f);
+                rt.anchoredPosition = new Vector2(0f, -118f);
                 rt.sizeDelta = new Vector2(110f, 30f);
                 // background for indicator for readability
                 var bg = pgGo.AddComponent<Image>();
@@ -195,23 +196,27 @@ namespace BYOJoystick.UI
             if (_selectors.Count == 0)
                 return;
 
-            var parentRt = VehicleSelection.transform.parent as RectTransform;
-            if (parentRt == null)
+            // Use the masked VehicleSelection width (not the wider parent). Using parent width
+            // over-counted slots so T-55 / EF-24G Front were "on page 1" but clipped by the mask.
+            var selectionRt = VehicleSelection.transform as RectTransform;
+            float availableWidth = selectionRt != null ? selectionRt.rect.width : 0f;
+            if (availableWidth <= 0)
             {
-                _itemsPerPage = _selectors.Count;
-                return;
+                var parentRt = VehicleSelection.transform.parent as RectTransform;
+                availableWidth = parentRt != null && parentRt.rect.width > 0
+                    ? parentRt.rect.width
+                    : Screen.width * 0.8f;
             }
 
-            float availableWidth = parentRt.rect.width;
-            if (availableWidth <= 0)
-                availableWidth = Screen.width * 0.8f;
-
-            // estimate selector width from first selector RectTransform or fallback
             var firstRt = _selectors[0].GetComponent<RectTransform>();
-            float selWidth = firstRt != null ? (firstRt.sizeDelta.x != 0 ? firstRt.sizeDelta.x : firstRt.rect.width) : 150f;
+            float selWidth = firstRt != null
+                ? (firstRt.sizeDelta.x != 0 ? firstRt.sizeDelta.x : firstRt.rect.width)
+                : 150f;
             if (selWidth <= 0) selWidth = 150f;
 
-            _itemsPerPage = Math.Max(1, (int)(availableWidth / selWidth));
+            // Match HorizontalLayoutGroup spacing on VehicleSelection
+            const float spacing = 8f;
+            _itemsPerPage = Math.Max(1, (int)((availableWidth + spacing) / (selWidth + spacing)));
         }
 
         private void UpdatePage()

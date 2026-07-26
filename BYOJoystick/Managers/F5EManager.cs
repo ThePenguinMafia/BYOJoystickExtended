@@ -29,13 +29,13 @@ namespace BYOJoystick.Managers
             FlightAxis("Brakes Axis", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.TriggerAxis);
             FlightButton("Brakes", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
 
-            FlightButton("Landing Gear Toggle", "GearInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
-            FlightButton("Landing Gear Up", "GearInteractable", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
-            FlightButton("Landing Gear Down", "GearInteractable", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
+            FlightButton("Landing Gear Toggle", "Landing Gear", ByManifest<VRLever, CLever>, CLever.Cycle, i: 0);
+            FlightButton("Landing Gear Up", "Landing Gear", ByManifest<VRLever, CLever>, CLever.Set, s: 1, i: 0);
+            FlightButton("Landing Gear Down", "Landing Gear", ByManifest<VRLever, CLever>, CLever.Set, s: 0, i: 0);
 
-            FlightButton("Flaps Cycle", "FlapsInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
-            FlightButton("Flaps Up", "FlapsInteractable", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
-            FlightButton("Flaps Down", "FlapsInteractable", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
+            FlightButton("Flaps Cycle", "Flaps", ByManifest<VRLever, CLever>, CLever.Cycle, i: 12);
+            FlightButton("Flaps Up", "Flaps", ByManifest<VRLever, CLever>, CLever.Set, s: 0, i: 12);
+            FlightButton("Flaps Down", "Flaps", ByManifest<VRLever, CLever>, CLever.Set, s: 1, i: 12);
 
             FlightButton("Arrestor Hook Toggle", "HookInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             FlightButton("Arrestor Hook Down", "HookInteractable", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
@@ -109,10 +109,10 @@ namespace BYOJoystick.Managers
         {
             SystemsButton("Clear Cautions", "MasterCautionInteractable", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            // engine and arm use covered switches
-            SystemsButton("Master Arm Toggle", "coverSwitchInteractable_masterArm", ByName<VRLever, CLeverCovered>, CLeverCovered.Cycle, c: false, s: -1, n: true);
-            SystemsButton("Master Arm On", "coverSwitchInteractable_masterArm", ByName<VRLever, CLeverCovered>, CLeverCovered.Set, 1, c: false, n: true);
-            SystemsButton("Master Arm Off", "coverSwitchInteractable_masterArm", ByName<VRLever, CLeverCovered>, CLeverCovered.Set, 0, c: false, n: true);
+            // engine and arm use covered switches (control ref names, not GameObject names)
+            SystemsButton("Master Arm Toggle", "Switch Cover (Master Arm)", ByManifest<VRLever, CLeverCovered>, CLeverCovered.Cycle, c: false, i: 20);
+            SystemsButton("Master Arm On", "Switch Cover (Master Arm)", ByManifest<VRLever, CLeverCovered>, CLeverCovered.Set, 1, c: false, i: 20);
+            SystemsButton("Master Arm Off", "Switch Cover (Master Arm)", ByManifest<VRLever, CLeverCovered>, CLeverCovered.Set, 0, c: false, i: 20);
 
             SystemsButton("Left Engine Toggle", "coverSwitchInteractable_leftEngine", ByName<VRLever, CLeverCovered>, CLeverCovered.Cycle, c: false, s: -1, n: true);
             SystemsButton("Left Engine On", "coverSwitchInteractable_leftEngine", ByName<VRLever, CLeverCovered>, CLeverCovered.Set, 1, c: false, n: true);
@@ -142,10 +142,10 @@ namespace BYOJoystick.Managers
             SystemsButton("Toggle Flares", "FlareInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
 
             // jettison is a covered switch
-            SystemsButton("Jettison Execute", "coverSwitchInteractable_jettisonButton", ByName<VRLever, CLeverCovered>, CLeverCovered.Cycle, c: false, s: -1, n: true);
-            SystemsButton("Jettison All Toggle", "JettisonAllInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
-            SystemsButton("Jettison Empty Toggle", "JettisonEmptyInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
-            SystemsButton("Jettison Tanks Toggle", "JettisonTanksInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
+            SystemsButton("Jettison Execute", "Switch Cover (Jettison)", ByManifest<VRLever, CLeverCovered>, CLeverCovered.Cycle, c: false, i: 15);
+            SystemsButton("Jettison All Toggle", "Jett All", ByManifest<VRLever, CLever>, CLever.Cycle, i: 16);
+            SystemsButton("Jettison Empty Toggle", "Jett Empty", ByManifest<VRLever, CLever>, CLever.Cycle, i: 17);
+            SystemsButton("Jettison Tanks Toggle", "Jett Tanks", ByManifest<VRLever, CLever>, CLever.Cycle, i: 18);
 
             SystemsButton("Fuel Port Toggle", "FuelPort", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Fuel Dump Toggle", "fuelDumpSwitchInteractable", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);

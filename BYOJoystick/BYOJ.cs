@@ -473,7 +473,41 @@ namespace BYOJoystick
                     var inputEvent = inputEvents[update.RawOffset];
                     inputEvent.Callback?.Invoke(update.Value, inputEvent.ModifierExists);
                 }
+
+                // Virtual devices (Key2Joy/vJoy) often skip buffered axis events while keys are held.
+                // Re-read current axis state so pitch/yaw/roll (and other axes) stay live.
+                PollCurrentAxes(joystick, inputEvents);
             }
+        }
+
+        private static void PollCurrentAxes(Joystick joystick, InputEvent[] inputEvents)
+        {
+            JoystickState state;
+            try
+            {
+                state = joystick.GetCurrentState();
+            }
+            catch
+            {
+                return;
+            }
+
+            InvokeAxis(inputEvents, JoystickOffset.X, state.X);
+            InvokeAxis(inputEvents, JoystickOffset.Y, state.Y);
+            InvokeAxis(inputEvents, JoystickOffset.Z, state.Z);
+            InvokeAxis(inputEvents, JoystickOffset.RotationX, state.RotationX);
+            InvokeAxis(inputEvents, JoystickOffset.RotationY, state.RotationY);
+            InvokeAxis(inputEvents, JoystickOffset.RotationZ, state.RotationZ);
+            InvokeAxis(inputEvents, JoystickOffset.Sliders0, state.Sliders != null && state.Sliders.Length > 0 ? state.Sliders[0] : 0);
+            InvokeAxis(inputEvents, JoystickOffset.Sliders1, state.Sliders != null && state.Sliders.Length > 1 ? state.Sliders[1] : 0);
+        }
+
+        private static void InvokeAxis(InputEvent[] inputEvents, JoystickOffset offset, int value)
+        {
+            var inputEvent = inputEvents[(int)offset];
+            if (inputEvent.Callback == null)
+                return;
+            inputEvent.Callback.Invoke(value, inputEvent.ModifierExists);
         }
 
         private void PollKeyboard()

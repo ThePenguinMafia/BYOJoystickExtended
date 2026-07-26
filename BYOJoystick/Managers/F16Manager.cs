@@ -31,10 +31,12 @@ namespace BYOJoystick.Managers
             FlightAxis("Brakes/Airbrakes Axis", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
             FlightButton("Brakes/Airbrakes", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.Trigger);
 
-            FlightButton("Flaps Cycle", "FlapsInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
-            FlightButton("Landing Gear Toggle", "GearInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
-            FlightButton("Landing Gear Up", "GearInteractable", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
-            FlightButton("Landing Gear Down", "GearInteractable", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
+            FlightButton("Flaps Cycle", "Flaps", ByManifest<VRLever, CLever>, CLever.Cycle, i: 8);
+            FlightButton("Flaps Increase", "Flaps", ByManifest<VRLever, CLever>, CLever.Next, i: 8);
+            FlightButton("Flaps Decrease", "Flaps", ByManifest<VRLever, CLever>, CLever.Prev, i: 8);
+            FlightButton("Landing Gear Toggle", "Landing Gear", ByManifest<VRLever, CLever>, CLever.Cycle, i: 14);
+            FlightButton("Landing Gear Up", "Landing Gear", ByManifest<VRLever, CLever>, CLever.Set, s: 1, i: 14);
+            FlightButton("Landing Gear Down", "Landing Gear", ByManifest<VRLever, CLever>, CLever.Set, s: 0, i: 14);
 
             // brake lock uses this ref name
             FlightButton("Parking Brake Toggle", "viperBrakeLockInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
@@ -89,7 +91,9 @@ namespace BYOJoystick.Managers
         {
             SystemsButton("Clear Cautions", "Clear Cautions", ByName<VRButton, CButton>, CButton.Use, n: true);
 
-            SystemsButton("Master Arm Toggle", "MasterArmInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
+            SystemsButton("Master Arm Toggle", "Master Arm", ByManifest<VRLever, CLever>, CLever.Cycle, i: 17);
+            SystemsButton("Master Arm On", "Master Arm", ByManifest<VRLever, CLever>, CLever.Set, s: 1, i: 17);
+            SystemsButton("Master Arm Off", "Master Arm", ByManifest<VRLever, CLever>, CLever.Set, s: 0, i: 17);
 
             SystemsButton("Engine Toggle", "leftEngineSwitchInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
             SystemsButton("Engine Switch Cover Toggle", "coverSwitchInteractable_leftEngine", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
@@ -116,7 +120,10 @@ namespace BYOJoystick.Managers
             SystemsButton("DED Power Toggle", "DED Power", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Fire Countermeasures", "Throttle", ByManifest<VRThrottle, CThrottle>, CThrottle.MenuButton);
 
-            SystemsButton("Jettison Execute", "JettisonSwitchInteractable", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
+            SystemsButton("Jettison Execute", "Jettison Switch", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Push, n: true);
+            SystemsButton("Jettison Cycle", "Jettison Switch", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Cycle, n: true);
+            SystemsButton("Jettison Next", "Jettison Switch", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Next, n: true);
+            SystemsButton("Jettison Prev", "Jettison Switch", ByName<VRTwistKnobInt, CKnobInt>, CKnobInt.Prev, n: true);
 
             SystemsButton("Flares Toggle", "Toggle Flares", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
             SystemsButton("Chaff Toggle", "Toggle Chaff", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
