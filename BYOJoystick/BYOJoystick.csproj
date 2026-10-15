@@ -5,7 +5,7 @@
         <OutputType>Library</OutputType>
         <RootNamespace>BYOJoystick</RootNamespace>
         <AssemblyName>BYOJoystick</AssemblyName>
-        <TargetFramework>net461</TargetFramework>
+        <TargetFramework>net472</TargetFramework>
         <LangVersion>8</LangVersion>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Deterministic>true</Deterministic>
@@ -31,7 +31,7 @@
         <Reference Include="0Harmony">
           <HintPath>C:\Program Files (x86)\Steam\steamapps\common\VTOL VR\Managed\0Harmony.dll</HintPath>
         </Reference>
-        <Reference Include="Assembly-CSharp">
+        <Reference Include="Assembly-CSharp" Publicize="true">
           <HintPath>C:\Program Files (x86)\Steam\steamapps\common\VTOL VR\VTOLVR_Data\Managed\Assembly-CSharp.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp-firstpass">
@@ -81,6 +81,9 @@
         <Reference Include="UnityEngine.UI">
           <HintPath>C:\Program Files (x86)\Steam\steamapps\common\VTOL VR\VTOLVR_Data\Managed\UnityEngine.UI.dll</HintPath>
         </Reference>
+        <Reference Include="Facepunch.Steamworks.Win64">
+          <HintPath>C:\Program Files (x86)\Steam\steamapps\common\VTOL VR\VTOLVR_Data\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
+        </Reference>
         <Reference Include="Valve.Newtonsoft.Json">
           <HintPath>C:\Program Files (x86)\Steam\steamapps\common\VTOL VR\VTOLVR_Data\Managed\Valve.Newtonsoft.Json.dll</HintPath>
         </Reference>
@@ -92,6 +95,6 @@
         </PackageReference>
     </ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="cmd /c if not exist &quot;C:\program files (x86)\steam\steamapps\common\VTOL VR\@Mod Loader\Mods\BYOJoystick&quot; mkdir &quot;C:\program files (x86)\steam\steamapps\common\VTOL VR\@Mod Loader\Mods\BYOJoystick&quot; &amp;&amp; copy &quot;$(TargetPath)&quot; &quot;C:\program files (x86)\steam\steamapps\common\VTOL VR\@Mod Loader\Mods\BYOJoystick\BYOJoystick.dll&quot;" />
+		<Exec Command="cmd /c copy &quot;$(TargetPath)&quot; &quot;C:\Program Files (x86)\Steam\steamapps\workshop\content\3018410\3732201271\BYOJoystick.dll&quot;" />
 	</Target>
 </Project>

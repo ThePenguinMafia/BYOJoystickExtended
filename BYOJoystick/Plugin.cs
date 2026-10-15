@@ -53,7 +53,9 @@ namespace BYOJoystick
         private void Awake()
         {
             Log("Loading BYO Joystick Plugin");
-            
+
+            LobbyBypass.Apply();
+
             StartCoroutine(LoadAssetBundle());
         }
 

@@ -1,5 +1,6 @@
 using BYOJoystick.Controls;
 using BYOJoystick.Managers.Base;
+using VTOLVR.DLC.Rotorcraft;
 using VTOLVR.Multiplayer;
 
 namespace BYOJoystick.Managers
@@ -72,10 +73,10 @@ namespace BYOJoystick.Managers
             FlightButton("Parking Brake On", "Parking Brake", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
             FlightButton("Parking Brake Off", "Parking Brake", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
 
-            // Rotor Controls (helicopter-specific)
-            FlightButton("Rotor Brake Toggle", "Rotor Brake", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
-            FlightButton("Rotor Brake On", "Rotor Brake", ByName<VRLever, CLever>, CLever.Set, s: 1, n: true);
-            FlightButton("Rotor Brake Off", "Rotor Brake", ByName<VRLever, CLever>, CLever.Set, s: 0, n: true);
+            // Rotor Controls (helicopter-specific) - use ByNamePartial to handle name variations
+            FlightButton("Rotor Brake Toggle", "Rotor Brake", ByNamePartial<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
+            FlightButton("Rotor Brake On", "Rotor Brake", ByNamePartial<VRLever, CLever>, CLever.Set, s: 1, n: true);
+            FlightButton("Rotor Brake Off", "Rotor Brake", ByNamePartial<VRLever, CLever>, CLever.Set, s: 0, n: true);
             
            // FlightButton("Rotor Fold Toggle", "Rotor Fold", ByName<VRLever, CLever>, CLever.Cycle, s: -1, n: true);
 
@@ -86,6 +87,7 @@ namespace BYOJoystick.Managers
             AddPostUpdateControl("Cyclic (Rear)");
             AddPostUpdateControl("Flight Collective (Rear)");
             AddPostUpdateControl("Power Lever (Rear)");
+            AddPostUpdateControl("Coll Functions");
         }
 
         protected override void CreateAssistControls()
@@ -149,8 +151,9 @@ namespace BYOJoystick.Managers
             SystemsButton("CM Rate +", "Countermeasures Release Rate +", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             SystemsButton("CM Rate -", "Countermeasures Release Rate -", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
 
-            // Combat collective grip button fires countermeasures
-            SystemsButton("Fire Countermeasures", "Combat Collective (Rear)", ByName<VRThrottle, CThrottle>, CThrottle.MenuButton, s: -1, n: true);
+            // Fire CM via AH94CollectiveFunctions (same approach as AH-94)
+            // This bypasses the VR trigger+menu button combo requirement
+            SystemsButton("Fire Countermeasures", "Coll Functions", ByType<AH94CollectiveFunctions, CCollFuncs>, CCollFuncs.FireCM, n: true);
 
             // Jettison
             SystemsButton("Jettison", "Jettison (Rear)", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
