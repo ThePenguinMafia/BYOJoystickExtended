@@ -2,6 +2,7 @@ using BYOJoystick.Controls;
 using BYOJoystick.Managers.Base;
 using VTOLVR.DLC.Rotorcraft;
 using VTOLVR.Multiplayer;
+using MFDButtons = MFD.MFDButtons;
 
 namespace BYOJoystick.Managers
 {
@@ -14,6 +15,7 @@ namespace BYOJoystick.Managers
        // private static string SideJoystick => "PassengerOnlyObjects/localCockpit/controls.001/vtol4adjustableJoystick_rear";
         private static string CenterJoystick => "AH-6_V1/Fuselage/Front_Interior/StickMount/PilotStickParent/Pi_Pitch/Pi_Roll/centerJoystickBar.001/ergo/cYaw/centerJoystick.001/centerJoyInteractable";
 
+        private static string Dash       => "PassengerOnlyObjects/DashCanvas/Rear";
         private static string BailHandle => "PassengerOnlyObjects/bailBase_rear";
 
         // Custom method to get the cyclic (joystick) by finding it in the interactables
@@ -155,6 +157,13 @@ namespace BYOJoystick.Managers
             // This bypasses the VR trigger+menu button combo requirement
             SystemsButton("Fire Countermeasures", "Coll Functions", ByType<AH94CollectiveFunctions, CCollFuncs>, CCollFuncs.FireCM, n: true);
 
+            // Weapon Dot toggle (physical toggler on the windshield)
+            SystemsButton("Toggle Weapon Dot", "Toggle Weapon Dot", ByName<VRInteractable, CInteractable>, CInteractable.Use, n: true);
+
+            // Flight Collective Trigger
+            SystemsAxis("Collective Trigger Axis", "Flight Collective (Rear)", ByName<VRThrottle, CThrottle>, CThrottle.TriggerAxis, n: true);
+            SystemsButton("Collective Trigger", "Flight Collective (Rear)", ByName<VRThrottle, CThrottle>, CThrottle.Trigger, n: true);
+
             // Jettison
             SystemsButton("Jettison", "Jettison (Rear)", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
             SystemsButton("Mark Jett L TIP", "Mark Jett L TIP (Rear)", ByName<VRButton, CButton>, CButton.Use, s: -1, n: true);
@@ -221,13 +230,88 @@ namespace BYOJoystick.Managers
             DisplayButton("MFD Brightness +", "MFD Brightness (Rear)", ByName<VRTwistKnob, CKnob>, CKnob.Increase, s: -1, n: true);
             DisplayButton("MFD Brightness -", "MFD Brightness (Rear)", ByName<VRTwistKnob, CKnob>, CKnob.Decrease, s: -1, n: true);
 
+            // MFD 1
+            DisplayButton("MFD 1 Toggle", "MFD 1", MFD, CMFD.PowerToggle, i: 0);
+            DisplayButton("MFD 1 On", "MFD 1", MFD, CMFD.PowerOn, i: 0);
+            DisplayButton("MFD 1 Off", "MFD 1", MFD, CMFD.PowerOff, i: 0);
+            DisplayButton("MFD 1 L1", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.L1, i: 0);
+            DisplayButton("MFD 1 L2", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.L2, i: 0);
+            DisplayButton("MFD 1 L3", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.L3, i: 0);
+            DisplayButton("MFD 1 L4", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.L4, i: 0);
+            DisplayButton("MFD 1 L5", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.L5, i: 0);
+            DisplayButton("MFD 1 R1", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.R1, i: 0);
+            DisplayButton("MFD 1 R2", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.R2, i: 0);
+            DisplayButton("MFD 1 R3", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.R3, i: 0);
+            DisplayButton("MFD 1 R4", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.R4, i: 0);
+            DisplayButton("MFD 1 R5", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.R5, i: 0);
+            DisplayButton("MFD 1 T1", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.T1Home, i: 0);
+            DisplayButton("MFD 1 T2", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.T2, i: 0);
+            DisplayButton("MFD 1 T3", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.T3, i: 0);
+            DisplayButton("MFD 1 T4", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.T4, i: 0);
+            DisplayButton("MFD 1 T5", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.T5, i: 0);
+            DisplayButton("MFD 1 B1", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.B1, i: 0);
+            DisplayButton("MFD 1 B2", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.B2, i: 0);
+            DisplayButton("MFD 1 B3", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.B3, i: 0);
+            DisplayButton("MFD 1 B4", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.B4, i: 0);
+            DisplayButton("MFD 1 B5", "MFD 1", MFD, CMFD.Press, (int)MFDButtons.B5, i: 0);
+
+            // MFD 2
+            DisplayButton("MFD 2 Toggle", "MFD 2", MFD, CMFD.PowerToggle, i: 1);
+            DisplayButton("MFD 2 On", "MFD 2", MFD, CMFD.PowerOn, i: 1);
+            DisplayButton("MFD 2 Off", "MFD 2", MFD, CMFD.PowerOff, i: 1);
+            DisplayButton("MFD 2 L1", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.L1, i: 1);
+            DisplayButton("MFD 2 L2", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.L2, i: 1);
+            DisplayButton("MFD 2 L3", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.L3, i: 1);
+            DisplayButton("MFD 2 L4", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.L4, i: 1);
+            DisplayButton("MFD 2 L5", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.L5, i: 1);
+            DisplayButton("MFD 2 R1", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.R1, i: 1);
+            DisplayButton("MFD 2 R2", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.R2, i: 1);
+            DisplayButton("MFD 2 R3", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.R3, i: 1);
+            DisplayButton("MFD 2 R4", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.R4, i: 1);
+            DisplayButton("MFD 2 R5", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.R5, i: 1);
+            DisplayButton("MFD 2 T1", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.T1Home, i: 1);
+            DisplayButton("MFD 2 T2", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.T2, i: 1);
+            DisplayButton("MFD 2 T3", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.T3, i: 1);
+            DisplayButton("MFD 2 T4", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.T4, i: 1);
+            DisplayButton("MFD 2 T5", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.T5, i: 1);
+            DisplayButton("MFD 2 B1", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.B1, i: 1);
+            DisplayButton("MFD 2 B2", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.B2, i: 1);
+            DisplayButton("MFD 2 B3", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.B3, i: 1);
+            DisplayButton("MFD 2 B4", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.B4, i: 1);
+            DisplayButton("MFD 2 B5", "MFD 2", MFD, CMFD.Press, (int)MFDButtons.B5, i: 1);
+
+            // MFD 3
+            DisplayButton("MFD 3 Toggle", "MFD 3", MFD, CMFD.PowerToggle, i: 2);
+            DisplayButton("MFD 3 On", "MFD 3", MFD, CMFD.PowerOn, i: 2);
+            DisplayButton("MFD 3 Off", "MFD 3", MFD, CMFD.PowerOff, i: 2);
+            DisplayButton("MFD 3 L1", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.L1, i: 2);
+            DisplayButton("MFD 3 L2", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.L2, i: 2);
+            DisplayButton("MFD 3 L3", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.L3, i: 2);
+            DisplayButton("MFD 3 L4", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.L4, i: 2);
+            DisplayButton("MFD 3 L5", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.L5, i: 2);
+            DisplayButton("MFD 3 R1", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.R1, i: 2);
+            DisplayButton("MFD 3 R2", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.R2, i: 2);
+            DisplayButton("MFD 3 R3", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.R3, i: 2);
+            DisplayButton("MFD 3 R4", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.R4, i: 2);
+            DisplayButton("MFD 3 R5", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.R5, i: 2);
+            DisplayButton("MFD 3 T1", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.T1Home, i: 2);
+            DisplayButton("MFD 3 T2", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.T2, i: 2);
+            DisplayButton("MFD 3 T3", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.T3, i: 2);
+            DisplayButton("MFD 3 T4", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.T4, i: 2);
+            DisplayButton("MFD 3 T5", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.T5, i: 2);
+            DisplayButton("MFD 3 B1", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.B1, i: 2);
+            DisplayButton("MFD 3 B2", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.B2, i: 2);
+            DisplayButton("MFD 3 B3", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.B3, i: 2);
+            DisplayButton("MFD 3 B4", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.B4, i: 2);
+            DisplayButton("MFD 3 B5", "MFD 3", MFD, CMFD.Press, (int)MFDButtons.B5, i: 2);
+
             AddPostUpdateControl("MFD Brightness (Rear)");
             AddPostUpdateControl("SOI");
         }
 
         protected override void CreateRadioControls()
         {
-            RadioButton("Radio Transmit", "Radio", ByType<CockpitTeamRadioManager, CRadio>, CRadio.Transmit, s: -1, n: true);
+            RadioButton("Radio Transmit", "Radio", ByType<CockpitTeamRadioManager, CRadio>, CRadio.Transmit, r: Dash, n: true);
 
             // Comm Radio
             RadioAxis("Comm Volume", "Comm Radio Volume (Rear)", ByName<VRTwistKnob, CKnob>, CKnob.Set, s: -1, n: true);

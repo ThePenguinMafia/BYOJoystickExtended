@@ -18,7 +18,7 @@ namespace BYOJoystick
         ///
         /// Use "ALL" (or "*") to enable for all aircraft.
         /// You can also use comma/semicolon separated values (e.g. "F22;SU47M").
-        public static string VerboseInteractableDiscoveryForShortName = "";
+        public static string VerboseInteractableDiscoveryForShortName = "ALL";
 
         public static bool IsVerboseInteractableDiscoveryEnabledFor(string shortName)
         {

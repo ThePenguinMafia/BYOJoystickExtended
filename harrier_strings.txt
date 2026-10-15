@@ -1,0 +1,1702 @@
+HITS 1701
+-[ CHECK GEAR ]-
+1 / Swap Radio Frequency
+1350L Fuel Drop Tank
+4 / Set AP Altitude
+5 / Set AP Heading
+6 / Set AP Speed
+7 / Swap MFDs
+A 13650L liter fuel tank.
+A 500lb high drag bomb.
+A smart cluster bomb that fires 40 explosively shaped armor penetrators at targets.
+AGM-88 ARM
+AGM-88S ARM
+AGRadar
+AIEjectPilot
+AIM-120 Advanced Radar Missile
+ALTITUDE WARNINGS
+AN/APG-108 Fire Control Radar
+APG-65 PD Radar
+APHeadingTf
+APU
+APU Battery Panel
+APUGauge
+APUInstruments
+APUSwitch
+ARM
+ARMED
+ARMissileLauncher
+AdjustableJoystick
+AdvancedRadarController
+AirBrakeController
+AirFormationLeader
+AirSpeed
+AirSpeed_decl1
+AirbrakeIndicatorParent
+AircraftLiveryApplicator
+Airspeed
+AirspeedText
+All AP Off
+Altitude
+Altitude Hold
+AltitudeGauge
+AltitudeModeSwitch
+AltitudeWarning
+AltitudeWarningSettingsUI
+Analog speed gauge title
+Analog speed gauge units
+ArmCrossTf
+ArmCrossTransform
+Armature
+Armature.002
+ArmedObj
+AssistMasterInteractable
+AssistMasterInteractable_860160
+Auto Adjust Joystick
+BINGO LEVEL
+BackButton
+Ban member button
+BasicFlight_ClimbAltitude
+BasicFlight_EngineTiltForward
+BasicFlight_TakeoffSpeed
+BasicFlight_checkTilt
+BasicFlight_flightAssists
+BasicFlight_stopAfterLand
+BasicFlight_touchdown
+BasicFlight_velocityVector
+Battery
+BatteryGuage
+BatteryIndicatorLight
+BayDoors
+BayLight
+BayLightPower
+Bingo
+BingoAdjustTitle
+BingoAdjustTitle_-439040
+BingoDown
+BingoEstimate
+BingoFuelAdjuster
+BingoText
+BingoUp
+Block member button
+BombDragParachute
+BottomButton
+BottomButtons
+BottomStrobeLight
+Brake Lock
+BrakeLockInteractable_859740
+BrakeLockSwitch
+Button
+Button to invite this friend.
+Button to open the invite friends menu
+ButtonLabel
+ButtonLabel (1)
+ButtonLabel (2)
+ButtonLabel (3)
+ButtonLabel (4)
+ButtonLabel (5)
+ButtonText
+ButtonText_855804
+ButtonText_855888
+ButtonText_856918
+ButtonText_857740
+ButtonText_858140
+ButtonText_859092
+ButtonText_952188
+ButtonText_954842
+Buttons
+CHAFF
+CMFlare
+CMIndicator
+CMIndicator (1)
+CMS
+CMSAnnouncerAudio
+CMSConfigUI
+CURSOR SPEED
+Camera HMD HUD
+Canopy
+CanopyLeverInteractable
+CanopyLeverTf
+CarrierLightFlare
+CautionButtonHolder
+CenterButton
+CenterConsole
+CenterOfMass
+Chaff
+ChaffCountText
+ChaffCountermeasure
+ChaffInteractable
+ChaffInteractable_859410
+ChaffLauncher
+ChaffLauncher (1)
+ChaffLauncher (2)
+ChaffLauncher (3)
+ChaffOn
+ChaffParticle
+ChaffParticle (1)
+ChaffSwitch
+Channel
+ChannelKnob
+ChannelRadioSystem
+Clear
+Clear Cautions
+Clear Jettison Marks
+Clear Waypoint
+Clear joined/left notifications
+ClearJettisonInteractable
+ClearJettisonInteractable_856154
+CloseButton
+ClrInteractable
+ClrInteractable_2126108
+ClrWptButton
+ClrWptButton_859478
+CockpitLight
+CockpitLight (1)
+CockpitLight (2)
+CockpitLight (3)
+CockpitLightEmission
+CockpitLightPower
+CockpitLights
+CockpitRadio
+CockpitTeamRadioManager
+CollimatedHUDUI
+CollimatedHud
+Comm Radio Volume
+CommRadio
+CommRadioAllied
+CommRadioAudio
+CommRadioCopilot
+CommRadioOpFor
+CommRadioPos
+CommRadioSource
+CommsVolume
+CommsVolumeKnob
+CommsVolumeKnobMP
+CommsVolumeKnobMP_-18677120
+CommsVolumeKnob_953158
+CommsVolumeMP
+Continue Flight
+ContinueFlightButton
+ContinueFlightButton_858160
+ContinueFlightText
+ControllerInteractableInfo
+CustomCanopyAnimator
+CustomCanopySync
+CustomWarningLights
+DISARMED
+DUMP
+DashAPUGauge
+DashAltitudeGauge
+DashAttitudeIndicator
+DashBatteryGauge
+DashFuelGauge
+DashMissileLaunchWarning
+DashRWR
+DashSpeedometer
+DecimalInteractable
+DeleteButton
+DetachButton
+DisarmedText
+DisusedRadioOutputText
+DynamicLaunchZone
+ECM Chaff
+ENGINE
+ENTER
+ESeatParachute
+ETC1_EXTERNAL_ALPHA USE_HUD_BRIGHTNESS _EMISSION
+EWIndicator_Left
+EditButton
+EditButton_-423798
+Eject
+EjectHandle
+EjectSync
+EjectionSeat
+EjectorSeat
+EmergencyJettisonButton
+EmissiveTextureLight
+Engine
+Engine Con Panel
+EngineEffects
+EngineEmissionAnimator
+EngineFX
+EngineMFD
+EngineOutput
+EngineReadout
+EngineRotator
+EngineSwitch
+EngineSync
+EngineTiltSync
+EngineTiltTf
+EngineWarningIndicator
+Engines
+EnterPlayerNotification
+EnterPlayerTemplate
+EquipButton
+ExtLightPanel
+ExteriorLightSync
+ExteriorMaster
+External fuel
+FLAP
+FLAP control
+FLAPS
+FLARE
+FLARES
+FLIRCameraMFD
+FOVText ButtonLabel
+FOVText ButtonLabel_954546
+FUEL
+FUEL CONFIG
+FireIndicator
+Flap Mode
+Flaps
+Flaps Mode Knob
+FlapsInteractable
+FlapsInteractable_855734
+FlapsLabel
+FlapsLabel (1)
+FlapsLabel (2)
+FlapsLabel (3)
+FlapsLever
+Flare Salvo
+FlareCountText
+FlareCountermeasure
+FlareInteractable
+FlareInteractable_856806
+FlareOn
+FlarePanicButton
+FlareSwitch
+FlareTf
+FlareTf (1)
+FlareTf (2)
+FlareTf (3)
+Flares
+FlashlightCookie
+Flight Cost:
+Flight log
+FlightAssist
+FlightAssistPanel
+FlightAssistSwitch
+FlightInfo
+FlightLog
+FlightWarningAudio
+FlightWarnings
+FlybyCameraMFDPage
+FormLight
+FormLightLeft
+FormLightRight
+FormLights
+FormLightsBottom
+FormLightsTail
+FormLightsTop
+Formation Lights
+FormationGlowController
+FrontSuspensionArmLook
+Fuel
+Fuel Dump Switch
+Fuel Tank
+FuelConfig
+FuelDisplay
+FuelDoors
+FuelDump
+FuelDumpController
+FuelDumpLightBase
+FuelDumpSwitch
+FuelExt
+FuelGauge
+FuelMain
+FuelOptionsLabel
+FuelPanel
+FuelPanelLabel
+FuelPanelLabel (1)
+FuelPanelLabel (2)
+FuelPort
+FuelPortSwitch
+FuelPortSwitchLabel
+FuelPort_860018
+FuelProbe
+FuelTank
+GEAR
+GLimSwitch
+GLimitSwitchInteractable
+GLimitSwitchInteractable_860152
+GPSSignalNotification
+Gear
+GearAnimator
+GearDoors
+GearDrag
+GearInteractable
+GearInteractable_856386
+GearLightController
+GearLights
+GearPanel
+GearWarning
+GearsSwitchLight
+General "back" button for menus.
+GrabHandleL
+GrabHandleR
+GroundRadar
+GroundRadarCompute
+GroundRadarDispatcher
+GroundRadarOutput
+GroundRadarOutputRT
+HARM
+HARM-SD
+HMCS
+HMCS Power
+HMCSDisplays
+HMCSPower
+HMDAltitude
+HP Radar
+HP0: Hellfire Launcher x4 Multi-launcher Long name
+HPEquipARML
+HPEquipBombDragRack
+HPEquipRadar
+HPEquipRadarML
+HUD
+HUD Brightness
+HUD Declutter
+HUD Power
+HUD Unit label (g-force)
+HUD Unit label (mach)
+HUD unit label (g-force)
+HUD unit label (mach)
+HUD when lock-on-after-launch AGM mode is active
+HUDAltitudeLadder
+HUDAmmoCount
+HUDAoAMeter
+HUDBrightKnob
+HUDBrightKnob_855728
+HUDBrightnessControl
+HUDBuddyLaserPoint
+HUDBuddyPoint
+HUDCCIPSight
+HUDCanvas
+HUDCollisionWarning
+HUDColorChanger
+HUDDash
+HUDDashPoseBounds
+HUDDebugLabel
+HUDDeclutter
+HUDDeclutterKnob
+HUDDeclutterKnob_858778
+HUDDynamicLaunchZone
+HUDEBracket
+HUDElevationLadder
+HUDEngineTilt
+HUDGMeter
+HUDGPSBombTargeter
+HUDGPSIcon
+HUDGearWarning
+HUDGunDirectorSight
+HUDGunFunnel
+HUDHeadingLadder
+HUDHealth
+HUDJoyIndicator
+HUDLateralHoverVel
+HUDMaskToggler
+HUDMessages
+HUDNewObjective
+HUDPower
+HUDRWRIcon
+HUDRWRSystem
+HUDStallWarning
+HUDTGPIcon
+HUDVelVector
+HUDVelocity
+HUDVertVel
+HUDWaypoint
+HUDWeaponInfo
+HUD_GPSLost
+HUD_smallTriangle
+Handle
+Handle_112840
+HarrierAirFlapController
+HarrierCanopyAnimController
+HarrierCanopySlide
+HarrierCanopySlideGroup
+HarrierEngine
+HarrierEngineVentController
+HarrierFormLights
+HarrierGearAnimController
+HarrierHUDMask
+HarrierHUDTickLadder
+HarrierRadarEquip
+HarrierTGPCenter
+Harrier_AOA_Indicator
+Harrier_AOA_Indicator_Glass
+Harrier_AirBrake
+Harrier_AirBrake_Group
+Harrier_AirFlap
+Harrier_AirFlapPiston
+Harrier_AirFlapPiston 1
+Harrier_AirFlapPiston1Pvt
+Harrier_AirFlapPistonPvt
+Harrier_AirFlapPiston_Group
+Harrier_AirFlapPiston_Group 1
+Harrier_AirFlap_Group
+Harrier_AirbrakePistonLower
+Harrier_AirbrakePistonLowerGroup
+Harrier_AirbrakePistonLowerJoint
+Harrier_AirbrakePistonUpper
+Harrier_Canopy
+Harrier_CanopyEdge
+Harrier_CanopyGlass_Inner
+Harrier_CanopyGlass_Outer
+Harrier_CanopyInterior
+Harrier_CanopyInteriorBolts
+Harrier_CanopyLever
+Harrier_CautionButton
+Harrier_CautionButton 1
+Harrier_CautionButton 10
+Harrier_CautionButton 11
+Harrier_CautionButton 12
+Harrier_CautionButton 13
+Harrier_CautionButton 14
+Harrier_CautionButton 15
+Harrier_CautionButton 16
+Harrier_CautionButton 17
+Harrier_CautionButton 2
+Harrier_CautionButton 3
+Harrier_CautionButton 4
+Harrier_CautionButton 5
+Harrier_CautionButton 6
+Harrier_CautionButton 7
+Harrier_CautionButton 8
+Harrier_CautionButton 9
+Harrier_CautionButton1
+Harrier_CautionButton2
+Harrier_CautionButton3
+Harrier_CautionButton4
+Harrier_CautionButton5
+Harrier_CautionButton6
+Harrier_CautionButton7
+Harrier_CautionButtons
+Harrier_CenterEngine
+Harrier_CockpitInterior
+Harrier_EngineFan
+Harrier_EngineInterior
+Harrier_Engine_Group
+Harrier_FDoorPistonLowerL
+Harrier_FDoorPistonLowerLJoint
+Harrier_FDoorPistonLowerR
+Harrier_FDoorPistonLowerRJoint
+Harrier_FDoorSupports
+Harrier_FGearBayInternal
+Harrier_FGearPiston
+Harrier_FGearPistonLower
+Harrier_FGearPistonLowerJoint
+Harrier_FGearPiston_Group
+Harrier_FSuspensionArm
+Harrier_FlightStickBase
+Harrier_FrontGear_Group
+Harrier_FrontNozzles
+Harrier_FrontNozzlesHolder
+Harrier_GearDoors
+Harrier_Gear_Group
+Harrier_HARM
+Harrier_HUD
+Harrier_HUDGlass_Front
+Harrier_HUDGlass_Rear
+Harrier_HUDMeshes
+Harrier_HUDProjector
+Harrier_InteriorLights
+Harrier_InteriorLights (1)
+Harrier_L_Flap
+Harrier_L_FlapUpper
+Harrier_L_FlapUpper_Group
+Harrier_L_Flap_Group
+Harrier_L_MFD
+Harrier_L_MFDBacking
+Harrier_L_MainDoor
+Harrier_L_MainDoor_Group
+Harrier_L_NoseDoor
+Harrier_L_NoseDoor_Group
+Harrier_L_WingGearDoor1
+Harrier_L_WingGearDoor2
+Harrier_L_WingGearDoor3
+Harrier_L_WingGearDoor_Group
+Harrier_L_WingGearDoors
+Harrier_MFD_Button1
+Harrier_MFD_Button10
+Harrier_MFD_Button11
+Harrier_MFD_Button12
+Harrier_MFD_Button13
+Harrier_MFD_Button14
+Harrier_MFD_Button15
+Harrier_MFD_Button16
+Harrier_MFD_Button17
+Harrier_MFD_Button18
+Harrier_MFD_Button19
+Harrier_MFD_Button2
+Harrier_MFD_Button20
+Harrier_MFD_Button3
+Harrier_MFD_Button4
+Harrier_MFD_Button5
+Harrier_MFD_Button6
+Harrier_MFD_Button7
+Harrier_MFD_Button8
+Harrier_MFD_Button9
+Harrier_MFDs
+Harrier_MainDoor3
+Harrier_MainGear_Group
+Harrier_Main_GearDoor_Group
+Harrier_MasterCautionButton
+Harrier_MasterWarningButton
+Harrier_NoseDoor3
+Harrier_NoseDoorPiston1
+Harrier_NoseDoorPiston2
+Harrier_NoseDoorPistonL
+Harrier_NoseDoorPistonLJoint
+Harrier_NoseDoorPistonR
+Harrier_NoseDoorPistonRJoint
+Harrier_Nose_GearDoor_Group
+Harrier_NozelAngleIndicator_Arm
+Harrier_NozzleAngleIndicator
+Harrier_NozzleAngleIndicatorHolder
+Harrier_NozzleAngleIndicatorPvt
+Harrier_RDoorSupportArm
+Harrier_RGearBayInternal
+Harrier_RSuspenionArmLower
+Harrier_RSuspenionArmLowerJoint
+Harrier_RSuspenionArmLowerTarget
+Harrier_RSuspenionArmUpper
+Harrier_RSuspenionArmUpperJoint
+Harrier_RSuspenionArmUpperTarget
+Harrier_RSuspensionArmTarget
+Harrier_RWR
+Harrier_RWR_Glass
+Harrier_R_Flap
+Harrier_R_FlapUpper
+Harrier_R_FlapUpper_Group
+Harrier_R_Flap_Group
+Harrier_R_MFD
+Harrier_R_MainDoor
+Harrier_R_MainDoor_Group
+Harrier_R_NoseDoor
+Harrier_R_NoseDoor_Group
+Harrier_R_WingGearDoor1
+Harrier_R_WingGearDoor2
+Harrier_R_WingGearDoor3
+Harrier_R_WingGearDoor_Group
+Harrier_R_WingGearDoors
+Harrier_RearNozzles
+Harrier_RearNozzlesHolder
+Harrier_RefuelProbeArm
+Harrier_RefuelProbeArm_Group
+Harrier_RefuelProbeBase
+Harrier_RefuelProbeBaseFixed
+Harrier_RefuelProbeOuter
+Harrier_RefuelProbeOuter_Group
+Harrier_RefuelProbeSupport
+Harrier_RefuelProbeSupport_Group
+Harrier_Selector_Knob
+Harrier_SuspensionArm
+Harrier_SwitchBaseHexBack
+Harrier_Switch_base1
+Harrier_Switch_base2
+Harrier_Switch_base3
+Harrier_Switch_knob
+Harrier_Switch_knob1
+Harrier_Switch_knob2
+Harrier_Switches
+Harrier_Throttle
+Harrier_ThrottleBase
+Harrier_ThrottleControls
+Harrier_WarningButton1
+Harrier_WarningButton2
+Harrier_WarningButton3
+Harrier_WarningButton4
+Harrier_WarningButton5
+Harrier_WarningButton6
+Harrier_WarningButton7
+Harrier_WarningButton8
+Harrier_WarningButton9
+Harrier_WarningButtons
+Harrier_WaypointHud
+Harrier_WingGearPistonLower
+Harrier_WingGearPistonLowerJoint
+Harrier_WingGearPistonUpper
+Harrier_WingGearPistonUpperJoint
+Harrier_YawIndicator
+Harrier_Yaw_CenterStick
+Harrier_harmSDx1
+Harrier_harmx1
+Heading
+Heading Hold
+HeadingBox
+HeadingChev
+HeadingText
+Hover
+Hover Autopilot
+HoverTut
+HoverTut_Altitude
+HoverTut_AltitudeLanding
+HoverTut_EngineTilt
+HoverTut_Landing
+HoverTut_Takeoff
+HoverTut_VertSpeed
+HoverTut_cancelLat
+HoverTut_faceTowardsLanding
+HoverTut_holdStillBeforeLand
+HoverTut_horizVelInfo
+HoverTut_levelNose
+HudBrakeLock
+HudBrakeLock_858050
+HudBrightTintLabel
+HudGPSIcon
+HudParent
+HudPowerLabel
+HudPowerLabel (1)
+HudPowerLabel (2)
+HudPowerLabel (3)
+IR Flares
+IRMissileLauncher
+InputIndicator
+Instrument Brightness
+InstrumentBrightnessKnob
+InstrumentLights
+InstrumentLightsPower
+Interactable
+InteractableInfo
+InteractableInfo (1)
+InteriorSounds
+Internal Fuel
+Internal Lights
+InternalLightsPanel
+JETTISON
+JettAllButton
+Jettison
+Jettison All Pylons
+Jettison Empty
+JettisonAll
+JettisonAllInteractable
+JettisonAllInteractable_860130
+JettisonButton
+JettisonEmptyInteractable
+JettisonEmptyInteractable_860042
+JettisonHP1
+JettisonHP2
+JettisonHP3
+JettisonHP4
+JettisonHP5
+JettisonHP6
+JettisonHP7
+JettisonHP8
+JettisonHP9
+JettisonHPSelect
+JettisonLight
+JettisonObj
+JettisonPanel
+JettisonSelectedButton
+JettisonText
+JettisonText_857292
+JettisonText_859418
+JoyInteractable
+Joystick
+Joystick (grip)
+JoystickAdjuster
+Kick member button
+Kills Assists Deaths column headers in MP players MFD page
+Knob
+KnobParent
+LGLight
+LGLight (1)
+LabelLightPower
+Landing Gear
+Landing Light
+LandingGearLever
+LandingGearLight
+LandingGearSync
+LandingLight
+LandingLightInteractable
+LandingLightSwitch
+LaserBombLauncher
+LateralHoverVel
+LaunchDetector
+LaunchDetector (1)
+LaunchDetector (2)
+LaunchIndicator
+LaunchWarnAudio
+LeftArmIK
+LeftArmTarget
+LeftArmTarget2
+LeftButton
+LeftButtons
+LeftFwdLight
+LeftNavLightPower
+LeftNavLights
+LeftRearLight
+LeftStrobeLight
+Light
+LightAlert
+LightSquareCookie
+LightSwitches
+LightWarn
+LoadButton
+LoalIndicator
+LockingRadar
+Lower Seat
+Lower throttle
+MASTER ARMED
+MAX ALTITUDE
+MFD
+MFD Brightness
+MFD Power (Left)
+MFD Power (Right)
+MFD1
+MFD1-Button-B1
+MFD1-Button-B2
+MFD1-Button-B3
+MFD1-Button-B4
+MFD1-Button-B5
+MFD1-Button-L1
+MFD1-Button-L2
+MFD1-Button-L3
+MFD1-Button-L4
+MFD1-Button-L5
+MFD1-Button-R1
+MFD1-Button-R2
+MFD1-Button-R3
+MFD1-Button-R4
+MFD1-Button-R5
+MFD1-Button-T1
+MFD1-Button-T2
+MFD1-Button-T3
+MFD1-Button-T4
+MFD1-Button-T5
+MFD1PowerInteractable
+MFD1PowerInteractable_856422
+MFD2
+MFD2-Button-B1
+MFD2-Button-B2
+MFD2-Button-B3
+MFD2-Button-B4
+MFD2-Button-B5
+MFD2-Button-L1
+MFD2-Button-L2
+MFD2-Button-L3
+MFD2-Button-L4
+MFD2-Button-L5
+MFD2-Button-R1
+MFD2-Button-R2
+MFD2-Button-R3
+MFD2-Button-R4
+MFD2-Button-R5
+MFD2-Button-T1
+MFD2-Button-T2
+MFD2-Button-T3
+MFD2-Button-T4
+MFD2-Button-T5
+MFDARADPage
+MFDAirportInfo
+MFDAirportRunwayInfoTemplate
+MFDAntiRadarAttackDisplay
+MFDAutoRWR
+MFDBrightnessAdjuster
+MFDBrightnessKnob
+MFDBrightnessKnob_858866
+MFDCommsMenu
+MFDCommsPage
+MFDEnginePage
+MFDEquipsPage
+MFDExtCamPage
+MFDFlightLog
+MFDFlightLogPage
+MFDFlirPage
+MFDFuelSettings
+MFDGPSPage
+MFDGPSTargets
+MFDGameMenu
+MFDGameMenuPage
+MFDHardpointInfo
+MFDHome
+MFDJoystickOptions
+MFDManager
+MFDMask
+MFDNVGSettings
+MFDNavPage
+MFDObjectivesPage
+MFDOff
+MFDOptionBrowser
+MFDOptionsPage
+MFDPage
+MFDPowerKnob
+MFDQuicksavePage
+MFDRWRPage
+MFDRadarPage
+MFDRadarUI
+MFDRadarmanager
+MFDRecenterText
+MFDSpectatorPage
+MFDSwapper
+MFDTargetingPage
+MFDTargetingRT
+MFDVehicleOptions
+MIN ALTITUDE
+MMFDManager
+MPPlayerJoinedNotification
+MPPlayersMFDPage
+Main Battery
+MainBatterySwitch
+MarkJettisonIndividual
+Master
+Master Arm Switch
+MasterAlert
+MasterArmLight
+MasterArmSwitch
+MasterArmText
+MasterCaution
+MasterCautionInteractable
+MasterCautionInteractable_855702
+MasterJettisonButtonInteractable
+MasterJettisonButtonInteractable_856040
+Mat_Harrier_JettButtonBack
+Mat_Harrier_RadarTop
+Mat_SeatEagleMiss_Base_color_1001
+Mat_SeatEagleMiss_Metallic_1001
+Mat_SeatEagleMiss_Mixed_AO_1001
+MaterialSwitcher
+MicNoFocusIndicator
+MiddleGearFrontArmIK
+MidflightObjects
+MiniMFDLeft
+MissileIndicator
+MissileLaunch
+MissileLaunchDetector
+MissileLauncher
+MissileLauncherSync
+Mk. 82SE SnakeEye Drag Bomb
+Mk. 82SE SnakeEye Drag Bomb x2
+Mk. 82SE SnakeEye Drag Bomb x3
+ModuleEngine
+ModuleRWR
+MultiCrewARMLSync
+MultiCrewFuelTankSync
+MultiplayerObjectSwitch
+NAV
+NVGButton
+NVGLight
+Nav
+Nav Lights
+NavLight
+NavLightController
+NavLightSwitch
+NavLights
+Nav_GPSLost
+Navigation Mode
+NewARADHUD
+NextButton
+NextButton_858006
+NextCountButton
+NoFocusIndicator
+NozzleAngle
+NumInteractable (0)
+NumInteractable (1)
+NumInteractable (2)
+NumInteractable (3)
+NumInteractable (4)
+NumInteractable (5)
+NumInteractable (6)
+NumInteractable (7)
+NumInteractable (8)
+NumInteractable (9)
+NumInteractable (ENT)
+NumPadText
+NumberInputSystem
+Numbers
+Numpad
+Numpad Set AP
+NumpadAudio
+NumpadOutput
+OpticalMissileLauncher
+OverSpeed
+Overwrite
+Overwrite...
+PTTStartStop
+PerTeamRadarSymbol
+PitchAssistSwitch
+PitchAutoTrimInteractable
+PitchAutoTrimInteractable_859614
+PitchSASInteractable
+PitchSASInteractable_855582
+PitchTrimSwitch
+PlayPauseButton
+PlayerFlightLogger
+Point light
+PrevButton
+PrevButton_857278
+PrevCountButton
+QuickDevButtons
+QuickFlyButton
+QuickFlyButton_857886
+QuickStartInteractable
+QuickStartInteractable_857660
+Quickstart Engines
+QuickstartButton
+QuitButton
+RADAR
+RADAR AAM
+RADAR OFF
+RADAR OPTIONS
+RADAR:
+RADIO
+RCS
+RCS Mode
+RCSAudio
+RCSController
+RCSFlightAssist
+RCSModeInteractable
+RCSModeInteractable_858010
+RCSModeSwitch
+RCSModeSwitchLabel
+RHandLeft
+RWR
+RWR Mode
+RWR OFF
+RWR Power
+RWRAntenna
+RWRIcon
+RWRModeInteractable
+RWRModeInteractable_856254
+RWRModeSwitch
+RWRSync
+RWRText
+RWRText_957050
+Radar
+Radar (1)
+RadarCrossSection
+RadarErrorFlasher
+RadarMissileLauncher
+RadarOptions
+RadarRefTf
+RadarTemplate
+Radio Channel
+Radio Mode
+Radio PTT
+Radio Volume
+RadioChannelInteractable
+RadioChannelInteractable_2581172
+RadioChannelLeft
+RadioChannelRight
+RadioDash
+RadioInteractable
+RadioInteractable_2581494
+RadioTextLeft
+RadioTextRight
+RadioVolumeKnob
+RadioVolumeKnob_859248
+Raise Seat
+Raise throttle
+RearNavLightPower
+Rearm/Refuel
+RecenterDisplay
+RecommendedButton
+Refuel Probe
+RefuelAudio
+RefuelLoopAudio
+RefuelProbe
+RefuelProbeSync
+ReloadAllButton
+Remove crew member button
+RepairButton
+RestartButton
+ReturnButton
+ReturnButton_856630
+RightArmIK
+RightArmTarget
+RightArmTarget2
+RightButton
+RightButtons
+RightFwdNavLight
+RightNavLightPower
+RightNavLights
+RightRearNavLight
+RightStrobeLight
+RocketLauncher
+RocketLauncherSync
+RollAssistSwitch
+RollSASInteractable
+RollSASInteractable_859788
+SAS Panel
+STOLFlaps
+Save Flight Log
+SaveButton
+SaveLoadButton
+SaveNewButton
+SaveOverButton
+ScrollInteractable
+SeatAdjuster
+SeatHeightAdjustment
+Set Chaff
+Set Flares
+Set Fuel
+Show/Hide Flight Log
+SimpleDrag
+SimpleDragAudio
+SimpleDragCurve
+SimpleDrag_destroyedTail
+Speed
+Speed Hold
+Speed Units
+SpeedGauge
+SpeedModeLabel
+SpeedModeLabel_955738
+SpeedModeText
+SpeedText
+Standard un-guided 500lb bombs. Deploys an inflatable drag chute to slow descent for low altitude bombing.
+StartDumpButton
+StaticHUDParent
+StickSwitcher
+Strobe Lights
+StrobeLight
+StrobeLightController
+StrobeLights
+Switch Cover
+SymmetryButton
+TGPHudIcon
+TailNavLight
+TargetingMFDPage
+Team A title in players MFD page
+Team B title in players MFD page
+Team Radio Volume
+TeamRadioKnob
+Throttle
+ThrottleAdjustCtrls
+ThrottleBackButton
+ThrottleDownButton
+ThrottleFwdButton
+ThrottleIndicatorParent
+ThrottleInteractable
+ThrottleMove
+ThrottleSOISwitcher
+ThrottleUpButton
+Tilt
+TiltArrow
+TiltController
+TiltIndicator
+TiltIndicator_decl1
+Toggle Chaff
+Toggle Flares
+Toggle Flight Assist
+Toggle Flight Log
+Toggle Pitch Assist
+Toggle Roll Assist
+Toggle Yaw Assist
+ToggleAdjustJoyInteractable
+ToggleAdjustJoyInteractable_855938
+ToggleLogButton
+ToggleLogButton_860176
+TopButton
+TopButtons
+TopStrobeLight
+TutObjAltitude
+TutObjEngineSpool
+TutObjEngineTilt
+TutObjFaceNamedWaypoint
+TutObjMFDGoToPage
+TutObjSOIMFDPage
+TutObjSpeed
+TutObjSwitchToWeapon
+TutObjVertSpeed
+UI Scrollbar interactable
+UIImageStatusLight
+UnityEngine.InputSystem
+UnityEngine.SpatialTracking
+UnityEngine.SpatialTracking.dll
+UnityEngine.UI
+UnityEngine.UI.Extensions
+UnityEngine.UI.dll
+VRButton
+VRInteractable
+VRInteractableUIButton
+VRJoystick
+VRLever
+VRSDKSwitcher
+VRSwitchCover
+VRThrottle
+VRTwistKnob
+VRTwistKnobInt
+VTNetworkVoicePTT
+VTNetworkVoiceReceiveIndicator
+VTOLThrottleAdjuster
+VTTextIllumSwitcher
+VTVoiceMaster
+VehicleMaster
+VisorButton
+VoiceIndicator
+WATER_BORDER
+Water Injection
+WaterBuoyancy
+WaterInjection
+WaterInjectionSwitch
+WaterTank
+Water_Mist_TextureSheet
+Waterfall
+WaypointDistObject
+WaypointLead
+Weapons/Missiles/HARM
+Weapons/Missiles/HARM-SD
+Weapons/Missiles/MK82HighDrag
+WingAeroFlap
+WptText
+YawAssistSwitch
+YawSASInteractable
+YawSASInteractable_859920
+[ BRAKE LOCK]
+[JETTISON]
+_ALPHAPREMULTIPLY_ON _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
+_EMISSION _METALLICGLOSSMAP _SPECGLOSSMAP
+_GLOSSYREFLECTIONS_OFF _METALLICGLOSSMAP _SPECGLOSSMAP
+_METALLICGLOSSMAP _NORMALMAP
+_METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
+abAudio_interior
+acesCenterEjectBase
+acesCenterEjectHandle
+acesEjectArmBase
+acesEjectArmLever
+acesEjectParent
+acesFlightRecorder
+acesRecoveryChute
+acesSeat
+acesSeatAdjuster
+acesSeatFrame
+acesSeatFrame.001
+acesSeatPad
+acesSeatPos
+acesSideEjectBase
+acesSideEjectBase (1)
+acesSideEjectHandle
+afterburner2_interior
+ah94_agRadar
+airBrake
+airBrake_4
+airbrakeCylinder
+airbrakeCylinder_1
+airbrakePiston
+airbrakePiston_1
+altitude
+altitudeAPButton
+altitudeAPButton_855514
+altitudeSettings
+apu
+apuAudioBassy
+apuAudioBlow
+apuAudioWhine
+apuBassy
+apuBlow
+apuHighWhine
+apuSwitchInteractable
+apuSwitchInteractable_855502
+assistsTxt
+autoAdjustJoyInteractable
+autoAdjustJoyInteractable_856740
+autoJoyLight
+av42cQuickFlight
+av42c_interiorLight
+basicFlight_TakeoffSpeed
+basicFlight_engineTiltFwd
+battery
+batteryLight
+bayDoorAudio
+bayDoorAudioHinge
+bayDoorHingeLeft
+bayDoorHingeRight
+bingo
+bingoBar
+brakeAero
+brakeBar
+brightnessOverlay
+brightnessOverlay (2)
+brightnessOverlay_adi
+brightnessOverlay_chaff
+brightnessOverlay_flares
+budgetNumber
+button
+buttonImage
+button_0
+button_2
+canopy
+canopyFrame.001_1
+canopyFrame.003_954194
+canopyPop
+canopyWhirr
+carrierLightFlare
+centerBar
+centerCircle
+centerCircle (1)
+centerCircle (2)
+centerPoint
+chaff
+chaffBar
+chaffBarR
+chaffCountText
+chaffIndic
+chaffKnob
+channelLabel
+chuteDrag
+circleMeterCover
+circleMeterUncovered
+clearButton
+clearButton_4853888
+cmsPage
+collectiveHandle
+collider_ejectorSeat
+configSeatPosition
+countButtons
+coverSwitch2
+coverSwitch3
+coverSwitch4
+coverSwitchBase2
+coverSwitchInteractable_apuSwitch
+coverSwitchInteractable_fuelDump
+coverSwitchInteractable_jettisonButton
+coverSwitchInteractable_leftEngine
+coverSwitchInteractable_leftEngine_858864
+coverSwitchParent
+crsButtons
+dButton
+dButtonBase
+dButtonBase (1)
+dButtonBase (1)_856914
+dButtonBase (2)
+dButtonBase (2)_858724
+dButtonBase (3)
+dButtonBase (3)_856684
+dButtonBase (4)
+dButtonBase (4)_860052
+dButtonBase (5)
+dButtonBase (5)_857762
+dButtonBase_857788
+dashGauge_altitude
+doorLeft
+doorRight
+dragPoint
+ejectBooster
+ejectInteractable
+ejectInteractable_858246
+ejectInteractable_952116
+ejectLockTf
+engineEmission
+engineHitbox
+engineTiltTutorialPoint
+externalFuelText
+externalFuelText_701646
+fa26jetInterior
+flapAudio
+flapLever
+flapdrag
+flapsLeverBase
+flareAudio
+flareIndic
+flareKnob
+flareSound
+flaresBar
+flaresBarR
+flaresCountText
+flybyHMCScam
+forearmBone
+forearmBone_end
+forearmLook
+forearmUpref
+formLightSwitch
+frontGearDoorLeft
+frontGearDoorRight
+frontGearSupportDoor
+frontGearSupportDoor_0
+fuelBar
+fuelConfig
+fuelControls
+fuelDoorLeft
+fuelDoorRight
+fuelDoorRight_0
+fuelDumpAudio
+fuelDumpLabel
+fuelDumpLight
+fuelDumpSound
+fuelDumpSwitchInteractable
+fuelDumpSwitchInteractable_197570
+fuelDump_particles
+fuelGauge
+fuelLabel
+fuelSprite
+gearDoorLeft
+gearDoorRight
+gearLever
+gearSwitchLight
+gearWhirr
+geardeploy
+glove_phoneButton
+glove_radio
+glove_radioButton
+glove_twistPushButton
+groundRadarCam
+harm
+harmLowPoly
+harm_er
+headingAPButton
+headingAPButton_858104
+headingBorder
+headingLadderObj
+helmNVGInteractable
+helmNVGInteractable_856016
+helmVisorInteractable
+helmVisorInteractable2
+helmVisorInteractable_857720
+highlight
+highlight (1)
+hmcsPowerInteractable
+hmcsPowerInteractable_856320
+hoverAPButton
+hoverAPButton_858476
+hoverDisplay
+hoverObj
+hoverTut_alt
+hoverTut_altLanding
+hoverTut_altThrottleHUD
+hoverTut_cancelLat
+hoverTut_engineTilt
+hoverTut_hoverVertSpeed
+hoverTut_landing
+hoverTut_levelNose
+hoverTut_takeoff
+hpInfoButton
+hudArrowBox
+hudEyeTargeter
+hudGlass.001
+hudGlassScratch
+hudGlassTint
+hudGpsRadius
+hudGpsRadius_1
+hudLargeCircle
+hudLargeCircle_1
+hudMediumCircle
+hudModeText
+hudModeText_956624
+hudPowerInteractable
+hudPowerInteractable_855558
+hudSmallCircle
+hudSprites
+hudSprites_0
+hudSprites_1
+hud_alpha
+hud_chevron
+hud_diamond
+hud_eBracket
+hud_gdsPipper
+hud_gdsRange
+hud_ghostVelVector
+hud_horizon
+hud_lateralShip
+hud_neg_ladder
+hud_noseIndicator
+hud_pos_ladder
+hud_reticle
+hud_tick
+hud_tickLadder
+hud_tickLadder_0
+hud_triangleThick
+hud_velVector
+hud_x
+indicator
+inputLIght
+inputLightModel
+interiorEngineHum
+interiorLightRed
+interiorSoundL
+interiorSoundR
+internalFuelText
+internalFuelText_-432922
+irLaunchDetector
+jetInterior
+jettison
+jettisonCollider
+jettisonLight
+jettison_0
+jettison_1
+joystick
+joystick_0
+knob
+knob1
+knob2
+knobCenterLargeTf
+knobCenterSmallTf
+knobCenterTLarge
+knobCenterTf
+knobCenterTfLarge
+knobCenterTfSmall
+knobParent
+knobTf
+landingGearWarning
+landingLightFlare
+landingLightFlare (1)
+landingPads
+launchDetectors
+launchThreatDir
+leftEngineSwitchInteractable
+leftEngineSwitchInteractable_858214
+leftMiniMFDPoseBounds
+leftNavLight
+leftNavLightRear
+leftStrobeFlare
+leverBase
+liftArm
+lightFixture
+lightFixture_0
+lowCmsWarning
+lowDrag
+lowDrag.002
+lowDrag.002_0
+lowDrag_0
+lowerArmLeft
+lowerArmRight
+lowerSeatInter
+lowerSeatInter_856168
+m_radioSwitchBase
+mainBattSwitchInteractable
+mainBattSwitchInteractable_858600
+massNumber
+master
+masterArmLight
+masterArmSwitchInteractable
+masterArmSwitchInteractable_859944
+mat_HUD-Mask
+mat_HUD-Mask_0
+mat_HUD-UI
+mat_HUD-UI_0
+mat_aFighterInterior2
+mat_acesSeat
+mat_attitudeIndicator
+mat_attitudeIndicatorShadow
+mat_chaff
+mat_ctrlIndicator
+mat_ef24Instruments_0
+mat_ewCanopy
+mat_flareParticle
+mat_groundRadarOutput
+mat_harm
+mat_hqHelmetVisorInterior
+mat_hudScratch
+mat_mfd
+mat_miniMFD_0
+mat_patRadar2
+mat_rcsParticle
+mat_roundLight
+mat_vtAim9Launcher
+mat_vtol4Interior
+mat_vtol4TiltEngine
+mat_vtolHudGlass
+mat_waterMist
+mat_waterSplash2
+mfdRadarCursor
+mfdRadarCursor_1
+mfdRadarEnemy_1
+mfdRadarFriendly_1
+mfdRadarGroundEnemy
+mfdRadar_missile_1
+micLight
+miniMfd
+missileLaunchWarning
+mk82HighDrag.001
+mk82highDragLowPoly
+mpmm_inviteMenuButton
+nav
+navAPButton
+navAPButton_855348
+neckPTT
+neckPTT_2582164
+newLever
+ng_collectiveTiltBack
+ng_collectiveTiltFwd
+ng_jetThrottle
+ng_jetThrottleTrigger
+ng_joyCenterButton
+ng_knob
+noRadarObj
+noseIndicator
+notification
+notification1
+numLabel
+numLabel (1)
+num_beginEntry
+num_clear
+num_enter
+nvgButtonBase
+nvgButtonInteractable
+nvgButtonInteractable_859612
+nvgButtonLabel
+nvgButtonModel
+offAPButton
+offAPButton_857466
+opforRadioSource
+parachute_armature
+pasted__Harrier_AOA_Indicator
+pasted__Harrier_RWR
+pilotSeated
+powButtonMMFDLeft
+powButtonMMFDLeft_953178
+ptt
+pttStart
+pttStop
+radar
+radarAvailable
+radarCameraRT
+radarLockedRT
+radarOptions
+radarTf
+radioPlayPauseInteractable
+radioPlayPauseInteractable_858616
+radioSwitch
+radioSwitchBase
+radioSwitchBase (1)
+radioSwitchBase (2)
+raiseSeatInter
+raiseSeatInter_857284
+rcsFront
+rcsLeftBottom
+rcsLeftTop
+rcsPop
+rcsRearBottom
+rcsRearLeft
+rcsRearRight
+rcsRightBottom
+rcsRightTop
+rectangleButton
+rectangleButtonBase
+rectangleButtonBase (1)
+rectangularLight
+rectangularLight_0
+redStrobeFlare
+refuelConnect
+refuelLoop
+refuelTransform
+refuelboom
+remoteEjectSeat
+rightMiniMFDPoseBounds
+rightNavLight
+rightNavLightRear
+rightSideEjectInteractable
+rocketLaunch2
+roundButton
+roundButtonBase
+roundLight
+roundLight.001
+rwr
+rwrCircle
+rwrCircle (1)
+rwrCircle (2)
+rwrDiamond
+rwrIcon_airHat
+rwrIcon_circle
+rwrIcon_halfCircle
+rwrIcons
+rwrMissile
+rwrPing2
+rwrTexture
+seatAdjustPoseBounds
+seatEject
+seatSpace
+sideEjectInteractable
+sideEjectModel
+sideEjectParent
+sideEjectTransform
+sidewinder2xLauncher
+slidingDoor
+speedAPButton
+speedAPButton_-1845314
+speedBox
+squareButton
+squareButtonBase
+squareButtonBase (1)
+strobeLightSwitch
+swap
+switch
+switchParent
+symmetryButton
+targetIndicator
+targetIndicator (1)
+teamRadioSource
+tempSeatHolder
+tex_TEMP_ef24InstrumentsEmiss_0
+tex_TEMP_ef24Instruments_0
+tex_acesSeatFixed
+tex_attitudeIndicator
+tex_attitudeIndicatorShadow
+tex_attitudeIndicator_f45
+tex_harm
+tex_hudGlass
+tex_interiorProps
+tex_interiorProps_emiss
+tex_interiorProps_metal
+tex_mfd
+tex_miniMFD
+tex_miniMFD_ao
+tex_sidewinderLauncher
+tex_sidewinderLauncher_0
+tex_vtol4_tiltEngine
+tgpBearingIndicator
+tgtIndicatorTf
+throttleBar
+throttleClick
+throttleDisplay
+throttleInteractable
+throttleInteractable_859490
+throttleLockTf
+tiltAudioSource
+tiltEngineLeft
+toFromIndicator
+totalCostNumber
+ttsw_altitude
+ttsw_auxEngineFailure
+ttsw_bingoFuel
+ttsw_chaff
+ttsw_chaffEmpty
+ttsw_chaffLow
+ttsw_engineFailure
+ttsw_flare
+ttsw_flareEmpty
+ttsw_flareLow
+ttsw_fuelDump
+ttsw_fuelLeak
+ttsw_landingGear
+ttsw_leftEngineFailure
+ttsw_missileLaunch
+ttsw_rightEngineFailure
+tutSOItgt
+tut_TGPSOI
+tut_goHomeMFD1
+tut_goHomeMFD2
+tut_goHomeMFD3
+upperArmLeft
+upperArmLeft_end
+upperArmRight
+upperArmRight_end
+vehicleConfig_backButton
+vehicleConfig_chaffKnob
+vehicleConfig_chaffLabel
+vehicleConfig_detachButton
+vehicleConfig_equipButton
+vehicleConfig_flareKnob
+vehicleConfig_flareLabel
+vehicleConfig_flightCost
+vehicleConfig_fuelKnob
+vehicleConfig_overwrite
+vehicleConfig_repairButton
+vehicleConfig_repairButtonText
+vehicleConfig_symmetryButton
+visorButtonBase
+visorButtonInteractable
+visorButtonInteractable_855374
+visorButtonLabel
+visorButtonModel
+vtAim9Launcher
+vtol4AdjustableThrottle
+vtol4adjustableJoystick
+waterMist
+waterParticles
+waterTinySplash
+wayPointIcon
+waypointLine
+wingLightFlare
+wpn1tut_switchToGau8
+wpn1tut_switchToRockets
+yawIndicator
