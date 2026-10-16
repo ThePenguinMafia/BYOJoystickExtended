@@ -12,65 +12,31 @@ namespace BYOJoystick
     /// (like BYOJoystick) can join unmodded/vanilla multiplayer lobbies.
     ///
     /// The mod loader marks the game as "Modded" during SplashSceneController.Start
-    /// (before any mods load). This class reverts it when BYOJoystick loads
-    /// and patches the multiplayer join flow to skip version checks.
+    /// (before any mods load). Instead of reverting the version at startup
+    /// (which breaks modded lobby visibility), this class keeps the version
+    /// as Modded and only spoofs it at the moment of joining a public lobby.
     /// </summary>
     public static class LobbyBypass
     {
         private static HarmonyLib.Harmony _harmony;
 
         /// <summary>
-        /// Called from Plugin.Awake(). Reverts game version from Modded to
-        /// Public, removes mod loader lobby patches, and installs our own
-        /// patches for the join/lobby flow.
+        /// Called from Plugin.Awake(). Removes mod loader lobby patches and
+        /// installs our own patches for the join/lobby flow. The game version
+        /// is left as Modded so modded lobbies remain visible and joinable.
         /// </summary>
         public static void Apply()
         {
             Plugin.Log("LobbyBypass: Applying lobby bypass...");
             _harmony = new HarmonyLib.Harmony("byoj.lobbybypass");
 
-            try { RevertGameVersion(); }
-            catch (Exception ex) { Plugin.Log($"LobbyBypass: RevertGameVersion failed - {ex}"); }
+            Plugin.Log($"LobbyBypass: Current version = '{GameStartup.versionString}' (keeping as-is)");
 
             try { UnpatchModLoaderLobbyIntercept(); }
             catch (Exception ex) { Plugin.Log($"LobbyBypass: UnpatchModLoader failed - {ex}"); }
 
             try { ApplyBypassPatches(); }
             catch (Exception ex) { Plugin.Log($"LobbyBypass: ApplyBypassPatches failed - {ex}"); }
-        }
-
-        private static void RevertGameVersion()
-        {
-            var gameStartupType = typeof(GameStartup);
-
-            var versionField = gameStartupType.GetField("_version",
-                BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-            if (versionField == null)
-            {
-                Plugin.Log("LobbyBypass: Could not find GameStartup._version");
-                return;
-            }
-
-            var version = versionField.GetValue(null);
-            var releaseTypeField = version.GetType().GetField("releaseType",
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (releaseTypeField == null)
-            {
-                Plugin.Log("LobbyBypass: Could not find releaseType field");
-                return;
-            }
-
-            var currentType = releaseTypeField.GetValue(version);
-            Plugin.Log($"LobbyBypass: Current releaseType = {currentType}");
-
-            releaseTypeField.SetValue(version, GameVersion.ReleaseTypes.Public);
-            versionField.SetValue(null, version);
-
-            var versionSetField = gameStartupType.GetField("_versionSet",
-                BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-            versionSetField?.SetValue(null, false);
-
-            Plugin.Log($"LobbyBypass: Version reverted to Public => '{GameStartup.versionString}'");
         }
 
         private static void UnpatchModLoaderLobbyIntercept()
