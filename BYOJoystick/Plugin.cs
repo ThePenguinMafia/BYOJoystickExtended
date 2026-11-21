@@ -15,10 +15,11 @@ namespace BYOJoystick
 
         /// Set this to the manager ShortName you want to log (e.g. "F22", "SU47M").
         /// When empty, interactable/manifest discovery dumps are disabled.
-        ///
         /// Use "ALL" (or "*") to enable for all aircraft.
-        /// You can also use comma/semicolon separated values (e.g. "F22;SU47M").
-        public static string VerboseInteractableDiscoveryForShortName = "ALL";
+        /// Comma/semicolon lists also work (e.g. "F22;SU47M").
+        /// LIFE 2026-11-03 FPS log: F-45A MapControls with "ALL" dumped ~1200+ lines
+        /// via sync File.AppendAllText (Plugin.Log) — leave empty for shipping.
+        public static string VerboseInteractableDiscoveryForShortName = "";
 
         public static bool IsVerboseInteractableDiscoveryEnabledFor(string shortName)
         {
